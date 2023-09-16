@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  FormContainer,
-  RoundedLogo1,
-  StyledButton,
-  StyledLabel,
-  StyledInput,
-} from "../SignIn/SignIn";
 import logo1 from "../../assets/images/누끼로고1.png";
+import { FormContainer, RoundedLogo1, StyledLabel, StyledInput, StyledButton } from '../../styles/Main'
+
 import Grid from "@mui/material/Grid";
 
 const SignUp = () => {

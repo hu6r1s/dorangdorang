@@ -1,11 +1,7 @@
 import React, { useRef, useState } from "react";
-import {
-  FormContainer,
-  StyledButton,
-  StyledLabel,
-  StyledInput,
-} from "../SignIn/SignIn";
 import Grid from "@mui/material/Grid";
+import { FormContainer, StyledLabel, StyledInput, StyledButton } from '../../styles/Main'
+
 
 const ModifyMyInfo = () => {
   const fileInputRef = useRef(null); // 파일 입력란의 ref 생성
