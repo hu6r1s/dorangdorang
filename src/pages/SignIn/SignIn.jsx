@@ -1,14 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import logo1 from "../../assets/images/누끼로고1.png";
 import { Button } from "@mui/material";
+import logo2 from "assets/images/logo2.png";
+import styled from "styled-components";
 
 const SignIn = () => {
   return (
     <>
       <Container>
         <FormContainer>
-          <RoundedLogo1 src={logo1} />
+          <RoundedLogo2 src={logo2} />
           {/* 로그인 폼 */}
           <form>
             {/* 아이디 */}
@@ -64,7 +63,7 @@ export const FormContainer = styled.div`
 `;
 
 // 폼 상단 이미지
-export const RoundedLogo1 = styled.img`
+export const RoundedLogo2 = styled.img`
   width: 200px;
   height: 200px;
   border-radius: 100%;
@@ -102,7 +101,7 @@ export const StyledButton = styled(Button)(
     fontWeight,
     border,
   }) => ({
-    '&.MuiButtonBase-root' : {
+    '&.MuiButtonBase-root': {
       margin: margin || "10px",
       backgroundColor: backgroundColor || "#D39246",
       width: width || "800px",
@@ -117,8 +116,7 @@ export const StyledButton = styled(Button)(
         backgroundColor: backgroundColor || "#D39246",
       },
     }
-    })
-    );
-    
-    export default SignIn;
-    
+  })
+);
+
+export default SignIn;

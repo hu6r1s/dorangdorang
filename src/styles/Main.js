@@ -2,8 +2,8 @@ import Jandi from "assets/images/jandi.png";
 import styled from "styled-components";
 
 export const LogoImage = styled.img`
-  height: 70px;
-  width: 150px;
+  height: 80px;
+  width: 160px;
 `;
 
 export const LoginButton = styled.div`
@@ -11,6 +11,7 @@ export const LoginButton = styled.div`
   cursor: pointer;
   font-size: large;
   font-weight: bold;
+  font-family: "Dongle";
 `;
 
 export const HeaderContainer = styled.div`

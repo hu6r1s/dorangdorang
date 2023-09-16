@@ -1,12 +1,11 @@
-import React from "react";
+import AvatarTest from "assets/images/logo2.png";
 import styled from "styled-components";
-import AvatarTest from "../../assets/images/누끼로고1.png";
 
 const MyPage = () => {
   return (
     <div style={{ padding: "50px" }}>
       <Container>
-          <StyledAvatar src={AvatarTest} />
+        <StyledAvatar src={AvatarTest} />
       </Container>
     </div>
   );
