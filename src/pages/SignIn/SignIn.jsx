@@ -4,10 +4,10 @@ import logo1 from "../../assets/images/누끼로고1.png";
 import { FormContainer, RoundedLogo1, StyledLabel, StyledInput, StyledButton } from '../../styles/Main'
 
 const SignIn = () => {
-  // form data state
+  // 폼 데이터 스테이트
   const [formData, setFormData] = useState({
-    id: "",
-    password: "",
+    user_id: "",
+    user_password: "",
   });
   // 인풋 데이터 감지
   const handleChange = (e) => {
@@ -27,6 +27,8 @@ const SignIn = () => {
     console.log('제출된 데이터:', formData);
     navigate('/Main'); // 이동할 경로를 지정합니다.
   };
+
+  // 렌더링
   return (
     <>
         <FormContainer>
@@ -38,8 +40,8 @@ const SignIn = () => {
               <StyledLabel>아이디</StyledLabel>
               <br />
               <StyledInput
-                name="id"
-                value={formData.id}
+                name="user_id"
+                value={formData.user_id}
                 onChange={handleChange}
                 placeholder="ID"
                 required
@@ -50,8 +52,8 @@ const SignIn = () => {
               <StyledLabel>비밀번호</StyledLabel>
               <br />
               <StyledInput
-                name="password"
-                value={formData.password}
+                name="user_password"
+                value={formData.user_password}
                 onChange={handleChange}
                 placeholder="PASSWORD"
                 required
