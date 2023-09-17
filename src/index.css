@@ -1,4 +1,11 @@
 body {
   margin: 0;
-  font-family: "Dongle";
+  padding: 0;
+  background: #eeecd8 url("assets/images/jandi.png") left top/5% repeat;
+}
+
+a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit; /* 기본 텍스트 색상으로 복원 */
+  cursor: pointer; /* 기본 커서 스타일로 복원 */
 }
