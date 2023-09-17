@@ -7,16 +7,18 @@ import NextSignUp from "pages/NextSignUp/NextSignUp";
 import ModifyMyInfo from "pages/ModifyMyInfo/ModifyMyInfo";
 import MyPage from "pages/MyPage/MyPage";
 import BenefitsBoard from "pages/BenefitsBoard/BenefitsBoard";
+import ModifySelfIntroduction from "pages/ModifySelfIntroduction/ModifySelfIntroduction";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<NextSignUp />} />
+        <Route path="/" element={<ModifySelfIntroduction />} />
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/NextSignUp" element={<NextSignUp />} />
         <Route path="/ModifyMyInfo" element={<ModifyMyInfo />} />
+        <Route path="/ModifySelfIntroduction" element={<ModifySelfIntroduction />} />
         <Route path="/MyPage" element={<MyPage />} />
         <Route path="/BenefitsBoard" element={<BenefitsBoard />} />
       </Routes>
