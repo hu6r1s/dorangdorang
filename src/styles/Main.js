@@ -102,6 +102,20 @@ export const StyledButton = styled(Button)(
   })
 );
 
+// SignUp Page  About //
+export const DuplicateCheckButton=styled.button`
+  position:absolute;
+  top: 41px;
+  right:-10px;
+  width:100px;
+  height:55px;
+  border-radius:10px;
+  font-size:20px;
+  font-weight:bold;
+  color:#A4651B;
+  background-color:#C3E79F;
+`
+
 
 // MyPage Page About //
 export const StyledAvatar = styled.img`

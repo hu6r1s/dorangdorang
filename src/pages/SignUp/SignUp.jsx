@@ -8,6 +8,7 @@ import {
   StyledLabel,
   StyledInput,
   StyledButton,
+  DuplicateCheckButton
 } from "../../styles/Main";
 
 import Grid from "@mui/material/Grid";
@@ -71,7 +72,7 @@ const SignUp = () => {
           >
             {/* 닉네임 */}
             <Grid item xs={3}>
-              <div>
+              <div style={{position:'relative'}}>
                 <StyledLabel>닉네임</StyledLabel>
                 <br />
                 <StyledInput
@@ -83,6 +84,7 @@ const SignUp = () => {
                   onChange={handleChange}
                   required
                 />
+                <DuplicateCheckButton>중복검사</DuplicateCheckButton>
               </div>
             </Grid>
             {/* 나이 */}
@@ -121,7 +123,7 @@ const SignUp = () => {
             <Grid item xs={10}></Grid>
             {/* 아이디 */}
             <Grid item xs={9}>
-              <div>
+              <div style={{position:'relative'}}>
                 <StyledLabel>아이디</StyledLabel>
                 <br />
                 <StyledInput
@@ -133,6 +135,7 @@ const SignUp = () => {
                   onChange={handleChange}
                   required
                 />
+                <DuplicateCheckButton>중복검사</DuplicateCheckButton>
               </div>
             </Grid>
             {/* 비밀번호 */}
