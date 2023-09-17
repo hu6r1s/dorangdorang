@@ -16,6 +16,8 @@ const NextSignUp = () => {
     farm_want: "",
     farm_why: "",
     user_profileImage: "null",
+    farm_name:'',
+    farm_address:'',
   });
 
   // 인풋 데이터 감지
@@ -135,9 +137,43 @@ const NextSignUp = () => {
                 />
               </div>
             </Grid>
+            {/* 빈줄 */}
+            <Grid item xs={10}/>
+            {/* 농장 이름 */}
+            <Grid item xs={4} style={{ paddingRight: "15px" }}>
+              <div>
+                <StyledLabel>농장 이름</StyledLabel>
+                <br />
+                <StyledInput
+                  width={"100%"}
+                  height={"50px"}
+                  fontSize={"25px"}
+                  name="farm_name"
+                  value={formData.farm_name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </Grid>
+            {/* 농장 주소 */}
+            <Grid item xs={4} style={{ paddingLeft: "15px" }}>
+              <div>
+                <StyledLabel>농장 주소</StyledLabel>
+                <br />
+                <StyledInput
+                  width={"100%"}
+                  height={"50px"}
+                  fontSize={"25px"}
+                  name="farm_address"
+                  value={formData.farm_address}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </Grid>
           </Grid>
-          {/* 프로필 사진 */}
-          <div style={{ marginBottom: "150px", paddingRight: "280px" }}>
+          {/* 농장 사진 */}
+          <div style={{ marginBottom: "50px", paddingRight: "280px" }}>
             <StyledLabel>농장 사진</StyledLabel>
             <div>
               <input
