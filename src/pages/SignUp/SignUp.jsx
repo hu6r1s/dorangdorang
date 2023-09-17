@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // React Router v6에서는 useNavigate를 사용합니다.
+import { useNavigate } from "react-router-dom"; // React Router v6에서는 useNavigate를 사용합니다.
 import logo1 from "../../assets/images/누끼로고1.png";
-import { useRef } from "react";
 import {
   FormContainer,
   RoundedLogo1,

@@ -133,3 +133,38 @@ export const SmallContainer = styled.div`
   border-radius: 40px;
   margin: 0 auto;
 `; 
+
+export const MyPageSector = styled.div`
+  background-color: #f7f6eb;
+  border: 3px solid #8f6b42;
+  width: 700px;
+  padding:10px;
+  border-radius: 40px;
+  margin: 0 auto;
+  margin-bottom:20px;
+`; 
+
+export const FlexBox = styled.div`
+  display:flex;
+`; 
+
+export const MyPageTitle = styled.div`
+  font-size:40px;
+  font-weight:bold;
+  margin-left:150px;
+  margin-bottom:10px;
+`; 
+
+export const MyPageSubtitle = styled.div`
+  font-size:30px;
+  font-weight:bold;
+`; 
+
+export const MyPageNomalText = styled.div`
+  font-size:25px;
+`; 
+
+export const MyPageModifyButton = styled.div`
+  font-size:25px;
+  background-color: rgba(255, 0, 0, 0);
+`; 

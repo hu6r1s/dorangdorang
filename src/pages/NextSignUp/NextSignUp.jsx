@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // React Router v6에서는 useNavigate를 사용합니다.
+import { useNavigate } from "react-router-dom"; // React Router v6에서는 useNavigate를 사용합니다.
 import Grid from "@mui/material/Grid";
 import {
   FormContainer,
