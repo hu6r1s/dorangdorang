@@ -7,12 +7,14 @@ import NextSignUp from "pages/NextSignUp/NextSignUp";
 import ModifyMyInfo from "pages/ModifyMyInfo/ModifyMyInfo";
 import MyPage from "pages/MyPage/MyPage";
 import BenefitsBoard from "pages/BenefitsBoard/BenefitsBoard";
+import Map from "pages/Map/Map";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/map" element={<Map />} />
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/NextSignUp" element={<NextSignUp />} />
