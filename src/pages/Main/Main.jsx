@@ -1,21 +1,31 @@
+import Board from "components/Board";
 import Header from "components/Header";
-import { ContentContainer } from "styles/Main";
+import Nav from "components/Nav";
+
+import {
+  BoardContainer,
+  Content,
+  ContentContainer
+} from "styles/Main";
+
+
+
 
 const Main = () => {
+
+
   return (
     <>
       <Header />
       <ContentContainer>
-        <div>
-          <div>
-            <div>
-              saecham
-            </div>
-            <div>
-              toron
-            </div>
-          </div>
-        </div>
+        <Content>
+          <BoardContainer>
+            <Board type="saecham" />
+            <Board type="gomin" />
+            <Board type="jiwon" />
+          </BoardContainer>
+          <Nav />
+        </Content>
       </ContentContainer>
     </>
   );

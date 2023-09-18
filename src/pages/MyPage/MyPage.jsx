@@ -13,6 +13,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Carousel from '../../components/Carousel'
+import styled from "styled-components";
+
 
 const MyPage = () => {
   const navigate = useNavigate();
@@ -98,7 +100,6 @@ const MyPage = () => {
         <hr style={{border:'2px solid #7BB144', width:'700px'}}/>
         <Carousel></Carousel>
       </SmallContainer>
-    </div>
   );
 };
 

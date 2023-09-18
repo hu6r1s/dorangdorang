@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom'; // React Router v6에서는 useNavigate를 사용합니다.
 import logo1 from "../../assets/images/누끼로고1.png";
 import { FormContainer, RoundedLogo1, StyledLabel, StyledInput, StyledButton } from '../../styles/Main'
+import { Button } from "@mui/material";
+import logo2 from "assets/images/logo2.png";
+import styled from "styled-components";
+
 
 const SignIn = () => {
   // 폼 데이터 스테이트
@@ -32,7 +36,7 @@ const SignIn = () => {
   return (
     <>
         <FormContainer>
-          <RoundedLogo1 src={logo1} />
+          <RoundedLogo2 src={logo2} />
           {/* 로그인 폼 */}
           <form onSubmit={handleSubmit}>
             {/* 아이디 */}
@@ -76,5 +80,4 @@ const SignIn = () => {
     </>
   );
 };
-
 export default SignIn;
