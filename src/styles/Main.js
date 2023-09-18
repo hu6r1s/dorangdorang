@@ -168,3 +168,28 @@ export const MyPageModifyButton = styled.div`
   font-size:25px;
   background-color: rgba(255, 0, 0, 0);
 `; 
+
+// BenefitsBoard Page About //
+export const BenefitsBoardTitle = styled.div`
+  font-size:40px;
+  font-weight:bold;
+  margin-bottom:10px;
+`; 
+
+export const BenefitsBoardSubtitle = styled.div`
+  font-size:25px;
+  font-weight:bold;
+  color:#6A6969;
+  margin-bottom:5px;
+`; 
+
+export const BenefitsBoardCategory = styled.div`
+  font-size:35px;
+  font-weight:bold;
+  margin-bottom:5px;
+`; 
+
+export const BenefitsBoardNomalText = styled.div`
+  font-size:25px;
+  margin-bottom:50px;  
+`; 
