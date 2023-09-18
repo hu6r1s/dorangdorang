@@ -1,13 +1,13 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import "./App.css";
+import BenefitsBoard from "pages/BenefitsBoard/BenefitsBoard";
 import Main from "pages/Main/Main";
-import SignIn from "pages/SignIn/SignIn";
-import SignUp from "pages/SignUp/SignUp";
-import NextSignUp from "pages/NextSignUp/NextSignUp";
+import Map from "pages/Map/Map";
 import ModifyMyInfo from "pages/ModifyMyInfo/ModifyMyInfo";
 import MyPage from "pages/MyPage/MyPage";
-import BenefitsBoard from "pages/BenefitsBoard/BenefitsBoard";
-import Map from "pages/Map/Map";
+import NextSignUp from "pages/NextSignUp/NextSignUp";
+import SignIn from "pages/SignIn/SignIn";
+import SignUp from "pages/SignUp/SignUp";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import "./App.css";
 
 function App() {
   return (
