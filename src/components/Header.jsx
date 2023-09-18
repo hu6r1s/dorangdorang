@@ -11,7 +11,9 @@ const Header = () => {
         alt="로고 이미지"
         onClick={() => navigate("/")}
       />
-      <LoginButton>로그인</LoginButton>
+      <LoginButton onClick={() => {
+        navigate("/SignIn")
+      }}>로그인</LoginButton>
     </HeaderContainer>
   );
 };

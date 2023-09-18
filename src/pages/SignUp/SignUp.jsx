@@ -9,8 +9,9 @@ import {
   StyledButton,
   DuplicateCheckButton
 } from "../../styles/Main";
-
 import Grid from "@mui/material/Grid";
+import logo2 from "assets/images/logo2.png";
+
 
 const SignUp = () => {
   // 폼 데이터 스테이트
