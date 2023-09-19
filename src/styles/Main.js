@@ -32,13 +32,13 @@ export const ContentContainer = styled.div`
 // SignIn Page About //
 // 폼 컨테이너
 export const FormContainer = styled.div`
-  width: 1000px;
-  height: 600px;
+  width: 450px;
+  height: 300px;
   border: 3px solid #8f6b42;
-  border-radius: 100px;
+  border-radius: 30px;
   background-color: #f7f6eb;
   margin: auto;
-  margin-top: 80px;
+  margin-top: 120px;
   position: relative;
   display: flex;
   flex-direction: column; /* 아이템들을 세로로 나열합니다. */
@@ -47,35 +47,36 @@ export const FormContainer = styled.div`
 
 // 폼 상단 이미지
 export const RoundedLogo1 = styled.img`
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   border-radius: 100%;
   position: absolute;
-  top: -100px;
-  left: 430px;
+  top: -60px;
+  left: 180px;
 `;
 
 // 라벨 컴포넌트
 export const StyledLabel = styled.label`
-  font-size: ${(props) => props.fontSize || "30px"};
+  font-size: ${(props) => props.fontSize || "20px"};
   font-weight: ${(props) => props.fontWeight || "bold"};
   color: #555555;
 `;
 
 // 인풋 컴포넌트
 export const StyledInput = styled.input`
-  width: ${(props) => props.width || "800px"};
-  height: ${(props) => props.height || "80px"};
+  width: ${(props) => props.width || "250px"};
+  height: ${(props) => props.height || "40px"};
   border-radius: ${(props) => props.borderRadius || "10px"};
-  font-size: ${(props) => props.fontSize || "30px"};
+  font-size: ${(props) => props.fontSize || "20px"};
   font-weight: ${(props) => props.fontWeight || "bold"};
+  margin-top:5px;
 `;
 
 // 버튼 컴포넌트
 export const StyledButton = styled(Button)(
   ({
     theme,
-    margin,
+    marginBottom,
     backgroundColor,
     width,
     height,
@@ -85,13 +86,13 @@ export const StyledButton = styled(Button)(
     border,
   }) => ({
     "&.MuiButtonBase-root": {
-      margin: margin || "10px",
+      marginBottom: marginBottom || "10px",
       backgroundColor: backgroundColor || "#D39246",
-      width: width || "800px",
-      height: height || "60px",
+      width: width || "250px",
+      height: height || "35px",
       borderRadius: borderRadius || "20px",
       color: "white", // 여기서는 white를 문자열로 작성
-      fontSize: fontSize || "45px",
+      fontSize: fontSize || "20px",
       fontWeight: fontWeight || "bold",
       border: border || "3px solid #8bcd4a",
       "&:hover": {
@@ -105,12 +106,12 @@ export const StyledButton = styled(Button)(
 // SignUp Page  About //
 export const DuplicateCheckButton=styled.button`
   position:absolute;
-  top: 34px;
+  top: 27px;
   right:-8px;
-  width:80px;
-  height:35px;
+  width:50px;
+  height:25px;
   border-radius:10px;
-  font-size:15px;
+  font-size:8px;
   font-weight:bold;
   color:#A4651B;
   background-color:#C3E79F;
@@ -119,8 +120,8 @@ export const DuplicateCheckButton=styled.button`
 
 // MyPage Page About //
 export const StyledAvatar = styled.img`
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   border-radius: 100%;
   background-color: green;
 `;
@@ -128,7 +129,7 @@ export const StyledAvatar = styled.img`
 export const SmallContainer = styled.div`
   background-color: #f7f6eb;
   border: 3px solid #8f6b42;
-  width: 1000px;
+  width: 800px;
   height: 1000px;
   border-radius: 40px;
   margin: 0 auto;
@@ -149,23 +150,24 @@ export const FlexBox = styled.div`
 `; 
 
 export const MyPageTitle = styled.div`
-  font-size:40px;
+  font-size:30px;
   font-weight:bold;
-  margin-left:150px;
+  margin-left:50px;
   margin-bottom:10px;
 `; 
 
 export const MyPageSubtitle = styled.div`
-  font-size:30px;
+  font-size:25px;
   font-weight:bold;
+  margin-bottom:5px;
 `; 
 
 export const MyPageNomalText = styled.div`
-  font-size:25px;
+  font-size:20px;
 `; 
 
 export const MyPageModifyButton = styled.div`
-  font-size:25px;
+  font-size:20px;
   background-color: rgba(255, 0, 0, 0);
 `; 
 

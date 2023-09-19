@@ -12,7 +12,6 @@ import {
 } from "../../styles/Main";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
-import Carousel from '../../components/Carousel'
 
 
 const MyPage = () => {
@@ -20,7 +19,7 @@ const MyPage = () => {
 
   return (
     <div style={{ padding: "50px" }}>
-      <SmallContainer style={{height:'1500px'}}>
+      <SmallContainer style={{height:'1300px'}}>
         {/* 내 정보 섹터 */}
         <FlexBox style={{ alignItems: "center" }}>
           <MyPageTitle style={{ marginRight: "20px" }}>내 정보</MyPageTitle>
@@ -97,7 +96,6 @@ const MyPage = () => {
         {/* 농장 사진 */}
         <MyPageTitle style={{textAlign:'center', margin:'0px'}}>농장 사진</MyPageTitle>
         <hr style={{border:'2px solid #7BB144', width:'700px'}}/>
-        <Carousel></Carousel>
       </SmallContainer>
       </div>
   );

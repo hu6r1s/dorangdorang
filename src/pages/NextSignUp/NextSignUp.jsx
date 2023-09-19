@@ -7,6 +7,9 @@ import {
   StyledInput,
   StyledButton,
 } from "../../styles/Main";
+import Header from '../../components/Header'
+
+
 
 const NextSignUp = () => {
   // 폼 데이터 스테이트
@@ -55,10 +58,9 @@ const NextSignUp = () => {
 
   // 렌더링
   return (
-    <div style={{ padding: "50px" }}>
-      <FormContainer
-        style={{ margin: "0 auto" }}
-      >
+    <>
+  <Header/>
+      <FormContainer style={{padding:'25px 0', height:'360px'}}>
         <form
           onSubmit={handleSubmit}
           style={{
@@ -71,16 +73,15 @@ const NextSignUp = () => {
             container
             rowSpacing={1.5}
             justifyContent="center"
-            style={{ margin: "40px"}}
           >
             {/* 재배종목 */}
             <Grid item xs={4} style={{ paddingRight: "15px" }}>
               <div>
-                <StyledLabel style={{fontSize:'20px'}}>재배종목</StyledLabel>
+                <StyledLabel style={{fontSize:'15px'}}>재배종목</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"30px"}
+                  height={"20px"}
                   fontSize={"20px"}
                   name="farm_species"
                   value={formData.farm_species}
@@ -92,11 +93,11 @@ const NextSignUp = () => {
             {/* 취미 */}
             <Grid item xs={4} style={{ paddingLeft: "15px" }}>
               <div>
-                <StyledLabel style={{fontSize:'20px'}}>취미</StyledLabel>
+                <StyledLabel style={{fontSize:'15px'}}>취미</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"30px"}
+                  height={"20px"}
                   fontSize={"20px"}
                   name="user_hobit"
                   value={formData.user_hobit}
@@ -108,11 +109,11 @@ const NextSignUp = () => {
             {/* 이런 사람들과 친해지고 싶어요 */}
             <Grid item xs={8}>
               <div>
-                <StyledLabel style={{fontSize:'20px'}}>이런 사람들과 친해지고 싶어요</StyledLabel>
+                <StyledLabel style={{fontSize:'15px'}}>이런 사람들과 친해지고 싶어요</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"30px"}
+                  height={"20px"}
                   fontSize={"20px"}
                   name="farm_want"
                   value={formData.farm_want}
@@ -124,11 +125,11 @@ const NextSignUp = () => {
             {/* 귀농한 이유 */}
             <Grid item xs={8}>
               <div>
-                <StyledLabel style={{fontSize:'20px'}}>귀농한 이유</StyledLabel>
+                <StyledLabel style={{fontSize:'15px'}}>귀농한 이유</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"30px"}
+                  height={"20px"}
                   fontSize={"20px"}
                   name="farm_why"
                   value={formData.farm_why}
@@ -142,11 +143,11 @@ const NextSignUp = () => {
             {/* 농장 이름 */}
             <Grid item xs={4} style={{ paddingRight: "15px" }}>
               <div>
-                <StyledLabel style={{fontSize:'20px'}}>농장 이름</StyledLabel>
+                <StyledLabel style={{fontSize:'15px'}}>농장 이름</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"30px"}
+                  height={"20px"}
                   fontSize={"20px"}
                   name="farm_name"
                   value={formData.farm_name}
@@ -158,11 +159,11 @@ const NextSignUp = () => {
             {/* 농장 주소 */}
             <Grid item xs={4} style={{ paddingLeft: "15px" }}>
               <div>
-                <StyledLabel style={{fontSize:'20px'}}>농장 주소</StyledLabel>
+                <StyledLabel style={{fontSize:'15px'}}>농장 주소</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"30px"}
+                  height={"20px"}
                   fontSize={"20px"}
                   name="farm_address"
                   value={formData.farm_address}
@@ -173,9 +174,9 @@ const NextSignUp = () => {
             </Grid>
           </Grid>
           {/* 농장 사진 */}
-          <div style={{ marginBottom: "30px", paddingRight: "280px" }}>
-            <StyledLabel style={{fontSize:'20px'}}>농장 사진</StyledLabel>
-            <div style={{marginRight:'100px'}}>
+          <div style={{ marginBottom: "20px", marginRight:'80px'}}>
+            <StyledLabel style={{fontSize:'15px'}}>농장 사진</StyledLabel>
+            <div>
               <input
                 type="file"
                 id="fileInput"
@@ -187,9 +188,9 @@ const NextSignUp = () => {
               <StyledButton
                 onClick={() => fileInputRef.current.click()} // ref를 사용하여 파일 입력란 클릭
                 style={{
-                  width: "100px",
-                  height: "50px",
-                  fontSize: "20px",
+                  width: "80px",
+                  height: "40px",
+                  fontSize: "15px",
                   margin:'5px 10px 0px 0px'
                 }}
               >
@@ -197,7 +198,7 @@ const NextSignUp = () => {
               </StyledButton>
               <span
                 style={{
-                  fontSize: "20px",
+                  fontSize: "15px",
                   fontWeight: "bold",
                   color: "#A4651B",
                 }}
@@ -209,7 +210,7 @@ const NextSignUp = () => {
           {/* 회원가입 버튼 */}
           <StyledButton
             type="submit"
-            style={{ width: "680px", fontSize:'40px'}}
+            style={{ width: "350px", fontSize:'25px'}}
             backgroundColor="#A4651B"
             border="3px solid #dd923d"
           >
@@ -217,7 +218,7 @@ const NextSignUp = () => {
           </StyledButton>
         </form>
       </FormContainer>
-    </div>
+      </>
   );
 };
 export default NextSignUp;
