@@ -13,14 +13,29 @@ export const LoginButton = styled.div`
   cursor: pointer;
   font-size: 40px;
   font-family: Dongle-Bold, sans-serif;
+  margin-left: auto;
 `;
 
 export const HeaderContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   padding: 0 100px;
   background-color: #EEECD8;
+`;
+
+export const MenuContainer = styled.div`
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  margin-left: 30px;
+`;
+
+export const MenuItem = styled.div`
+  cursor: pointer;
+  font-size: 40px;
+  font-family: Dongle-Bold, sans-serif;
+  padding-right: 30px;
 `;
 
 export const ContentContainer = styled.div`
@@ -217,14 +232,13 @@ export const StyledTable = styled.table`
   border-collapse: collapse;
   background-color: #fff;
   border: 1px solid #ccc;
-  font-family: Dongle-Regular, sans-serif;
+  /* font-family: Dongle-Regular, sans-serif; */
 `;
 
 export const TableHeader = styled.th`
   background-color: #f0f0f0; /* 테이블 헤더 배경색 */
   padding: 10px;
-  text-align: left;
-  font-size: 22px;
+  font-size: 14px;
   border-bottom: 1px solid #ccc;
   text-align: center;
 `;
@@ -233,13 +247,13 @@ export const TableCell = styled.td`
   padding: 10px;
   /* border: 1px solid #ccc; */
   border-bottom: 1px solid #ccc;
-  font-size: 18px;
+  font-size: 13px;
   text-align: center;
 `;
 
 export const NavContainer = styled.div`
   width: 250px;
-  height: 260px;
+  height: 320px;
   background-color: #f0f0f0;
   padding: 20px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
