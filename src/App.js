@@ -9,6 +9,7 @@ import SignUp from "pages/SignUp/SignUp";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import ModifySelfIntroduction from "pages/ModifySelfIntroduction/ModifySelfIntroduction";
+import DetailedPost from "pages/DetailedPost/DetailedPost";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/ModifySelfIntroduction" element={<ModifySelfIntroduction />} />
         <Route path="/MyPage" element={<MyPage />} />
         <Route path="/BenefitsBoard" element={<BenefitsBoard />} />
+        <Route path="/DetailedPost" element={<DetailedPost />} />
       </Routes>
     </Router>
   );
