@@ -1,5 +1,5 @@
 import React from "react";
-import AvatarTest from "../../assets/images/누끼로고1.png";
+import AvatarTest from "../../assets/images/logo.png";
 import {
   SmallContainer,
   MyPageSector,
@@ -13,7 +13,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Carousel from '../../components/Carousel'
-import styled from "styled-components";
 
 
 const MyPage = () => {
@@ -53,7 +52,7 @@ const MyPage = () => {
           <MyPageTitle style={{ marginRight: "20px" }}>자기 소개</MyPageTitle>
           <MyPageModifyButton
             onClick={() => navigate("/ModifySelfIntroduction")}
-          >
+            >
             수정
           </MyPageModifyButton>
         </FlexBox>
@@ -63,7 +62,7 @@ const MyPage = () => {
             rowSpacing={3}
             justifyContent="center"
             style={{ padding: "10px" }}
-          >
+            >
             <Grid item xs={6} style={{margin:'20px auto'}}>
               <div>
                 <MyPageSubtitle>재배종목</MyPageSubtitle>
@@ -100,6 +99,7 @@ const MyPage = () => {
         <hr style={{border:'2px solid #7BB144', width:'700px'}}/>
         <Carousel></Carousel>
       </SmallContainer>
+      </div>
   );
 };
 

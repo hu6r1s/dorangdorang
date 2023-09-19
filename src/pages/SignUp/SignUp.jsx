@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // React Router v6에서는 useNavigate를 사용합니다.
-import logo1 from "../../assets/images/누끼로고1.png";
+import logo1 from "../../assets/images/logo.png";
 import {
   FormContainer,
   RoundedLogo1,
@@ -10,7 +10,6 @@ import {
   DuplicateCheckButton
 } from "../../styles/Main";
 import Grid from "@mui/material/Grid";
-import logo2 from "assets/images/logo2.png";
 
 
 const SignUp = () => {
