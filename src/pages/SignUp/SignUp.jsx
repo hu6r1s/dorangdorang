@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // React Router v6에서는 useNavigate를 사용합니다.
-import logo1 from "../../assets/images/logo.png";
+import logo1 from "../../assets/images/logo2.png";
 import {
   FormContainer,
   RoundedLogo1,
@@ -52,7 +52,7 @@ const SignUp = () => {
   // 렌더링
   return (
     <div>
-      <FormContainer style={{ paddingTop: "100px" }}>
+      <FormContainer >
         <RoundedLogo1 src={logo1} />
         <form
           onSubmit={handleSubmit}
@@ -64,7 +64,7 @@ const SignUp = () => {
         >
           <Grid
             container
-            rowSpacing={3}
+            rowSpacing={2}
             columnSpacing={{ xs: 6 }}
             justifyContent="center"
             style={{ margin: "50px" }}
@@ -72,12 +72,12 @@ const SignUp = () => {
             {/* 닉네임 */}
             <Grid item xs={3}>
               <div style={{position:'relative'}}>
-                <StyledLabel>닉네임</StyledLabel>
+                <StyledLabel style={{fontSize:'25px'}}>닉네임</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                  height={"30px"}
+                  fontSize={"20px"}
                   name="user_nickname"
                   value={formData.user_nickname}
                   onChange={handleChange}
@@ -89,12 +89,12 @@ const SignUp = () => {
             {/* 나이 */}
             <Grid item xs={3}>
               <div>
-                <StyledLabel>나이</StyledLabel>
+                <StyledLabel style={{fontSize:'25px'}}>나이</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                  height={"30px"}
+                  fontSize={"20px"}
                   name="user_age"
                   value={formData.user_age}
                   onChange={handleChange}
@@ -105,12 +105,12 @@ const SignUp = () => {
             {/* 성별 */}
             <Grid item xs={3}>
               <div>
-                <StyledLabel>성별</StyledLabel>
+                <StyledLabel style={{fontSize:'25px'}}>성별</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                  height={"30px"}
+                  fontSize={"20px"}
                   name="user_sex"
                   value={formData.user_sex}
                   onChange={handleChange}
@@ -118,17 +118,15 @@ const SignUp = () => {
                 />
               </div>
             </Grid>
-            {/* 줄 채우기 */}
-            <Grid item xs={10}></Grid>
             {/* 아이디 */}
             <Grid item xs={9}>
               <div style={{position:'relative'}}>
-                <StyledLabel>아이디</StyledLabel>
+                <StyledLabel style={{fontSize:'25px'}}>아이디</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                  height={"30px"}
+                  fontSize={"20px"}
                   name="user_id"
                   value={formData.user_id}
                   onChange={handleChange}
@@ -140,12 +138,12 @@ const SignUp = () => {
             {/* 비밀번호 */}
             <Grid item xs={9}>
               <div>
-                <StyledLabel>비밀번호</StyledLabel>
+                <StyledLabel style={{fontSize:'25px'}}>비밀번호</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                  height={"30px"}
+                  fontSize={"20px"}
                   name="user_password"
                   value={formData.user_password}
                   onChange={handleChange}
@@ -156,12 +154,12 @@ const SignUp = () => {
             {/* 한 줄 자기소개 */}
             <Grid item xs={9}>
               <div>
-                <StyledLabel>한 줄 자기소개</StyledLabel>
+                <StyledLabel style={{fontSize:'25px'}}>한 줄 자기소개</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                  height={"30px"}
+                  fontSize={"20px"}
                   name="user_description"
                   value={formData.user_description}
                   onChange={handleChange}

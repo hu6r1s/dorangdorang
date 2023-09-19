@@ -105,12 +105,12 @@ export const StyledButton = styled(Button)(
 // SignUp Page  About //
 export const DuplicateCheckButton=styled.button`
   position:absolute;
-  top: 41px;
-  right:-10px;
-  width:100px;
-  height:55px;
+  top: 34px;
+  right:-8px;
+  width:80px;
+  height:35px;
   border-radius:10px;
-  font-size:20px;
+  font-size:15px;
   font-weight:bold;
   color:#A4651B;
   background-color:#C3E79F;
