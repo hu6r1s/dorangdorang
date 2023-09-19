@@ -12,6 +12,7 @@ import {
 } from "../../styles/Main";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
+import Carousel from "components/Carousel";
 
 
 const MyPage = () => {
@@ -19,7 +20,7 @@ const MyPage = () => {
 
   return (
     <div style={{ padding: "50px" }}>
-      <SmallContainer style={{height:'1300px'}}>
+      <SmallContainer style={{ height: "1000px", width:'600px', padding:'10px'}}>
         {/* 내 정보 섹터 */}
         <FlexBox style={{ alignItems: "center" }}>
           <MyPageTitle style={{ marginRight: "20px" }}>내 정보</MyPageTitle>
@@ -51,30 +52,35 @@ const MyPage = () => {
           <MyPageTitle style={{ marginRight: "20px" }}>자기 소개</MyPageTitle>
           <MyPageModifyButton
             onClick={() => navigate("/ModifySelfIntroduction")}
-            >
+          >
             수정
           </MyPageModifyButton>
         </FlexBox>
-        <MyPageSector>
+        <MyPageSector style={{padding:'0px',}}>
           <Grid
             container
             rowSpacing={3}
             justifyContent="center"
-            style={{ padding: "10px" }}
+            style={{width:'550px', height:'300px', padding:'10px' }}
+          >
+            <Grid item xs={6} style={{ margin: "10px auto" }}>
+              <div>
+                <MyPageSubtitle>재배종목</MyPageSubtitle>
+                <MyPageNomalText>고구마</MyPageNomalText>
+              </div>
+            </Grid>
+            <Grid item xs={6} style={{ margin: "10px auto" }}>
+              <div>
+                <MyPageSubtitle>취미</MyPageSubtitle>
+                <MyPageNomalText>축구</MyPageNomalText>
+              </div>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              style={{ marginBottom: "20px", borderTop:'2px solid #7BB144' }}
             >
-            <Grid item xs={6} style={{margin:'20px auto'}}>
-              <div>
-                <MyPageSubtitle>재배종목</MyPageSubtitle>
-                <MyPageNomalText>고구마</MyPageNomalText>
-              </div>
-            </Grid>
-            <Grid item xs={6} style={{margin:'20px auto'}}>
-              <div>
-                <MyPageSubtitle>재배종목</MyPageSubtitle>
-                <MyPageNomalText>고구마</MyPageNomalText>
-              </div>
-            </Grid>
-            <Grid item xs={12} style={{marginBottom:'20px', borderTop: '3px solid #7BB144'}}>
+
               <div>
                 <MyPageSubtitle>이런 사람들과 친해지고 싶어요</MyPageSubtitle>
                 <MyPageNomalText>
@@ -82,7 +88,11 @@ const MyPage = () => {
                 </MyPageNomalText>
               </div>
             </Grid>
-            <Grid item xs={12} style={{marginBottom:'20px', borderTop: '3px solid #7BB144'}}>
+            <Grid
+              item
+              xs={12}
+              style={{ marginBottom: "10px", borderTop:'2px solid #7BB144' }}
+            >
               <div>
                 <MyPageSubtitle>귀농한 이유</MyPageSubtitle>
                 <MyPageNomalText>
@@ -94,10 +104,15 @@ const MyPage = () => {
           </Grid>
         </MyPageSector>
         {/* 농장 사진 */}
-        <MyPageTitle style={{textAlign:'center', margin:'0px'}}>농장 사진</MyPageTitle>
-        <hr style={{border:'2px solid #7BB144', width:'700px'}}/>
+        <MyPageTitle style={{ textAlign: "center", margin: "0px" }}>
+          농장 사진
+        </MyPageTitle>
+        <hr style={{ border: "2px solid #7BB144", width: "550px" }} />
+        <div style={{padding:'50px'}}>
+          <Carousel></Carousel>
+          </div>
       </SmallContainer>
-      </div>
+    </div>
   );
 };
 
