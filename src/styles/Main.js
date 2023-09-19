@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Button } from "@mui/material";
+import Jandi from 'assets/images/jandi.png'
 
 
 export const LogoImage = styled.img`
@@ -31,13 +32,13 @@ export const ContentContainer = styled.div`
 // SignIn Page About //
 // 폼 컨테이너
 export const FormContainer = styled.div`
-  width: 1400px;
-  height: 800px;
+  width: 1000px;
+  height: 600px;
   border: 3px solid #8f6b42;
   border-radius: 100px;
   background-color: #f7f6eb;
   margin: auto;
-  margin-top: 140px;
+  margin-top: 80px;
   position: relative;
   display: flex;
   flex-direction: column; /* 아이템들을 세로로 나열합니다. */
@@ -51,7 +52,7 @@ export const RoundedLogo1 = styled.img`
   border-radius: 100%;
   position: absolute;
   top: -100px;
-  left: 45%;
+  left: 430px;
 `;
 
 // 라벨 컴포넌트
@@ -64,9 +65,9 @@ export const StyledLabel = styled.label`
 // 인풋 컴포넌트
 export const StyledInput = styled.input`
   width: ${(props) => props.width || "800px"};
-  height: ${(props) => props.height || "100px"};
+  height: ${(props) => props.height || "80px"};
   border-radius: ${(props) => props.borderRadius || "10px"};
-  font-size: ${(props) => props.fontSize || "50px"};
+  font-size: ${(props) => props.fontSize || "30px"};
   font-weight: ${(props) => props.fontWeight || "bold"};
 `;
 
@@ -87,7 +88,7 @@ export const StyledButton = styled(Button)(
       margin: margin || "10px",
       backgroundColor: backgroundColor || "#D39246",
       width: width || "800px",
-      height: height || "80px",
+      height: height || "60px",
       borderRadius: borderRadius || "20px",
       color: "white", // 여기서는 white를 문자열로 작성
       fontSize: fontSize || "45px",
@@ -168,7 +169,6 @@ export const MyPageModifyButton = styled.div`
   background-color: rgba(255, 0, 0, 0);
 `; 
 
-<<<<<<< HEAD
 // BenefitsBoard Page About //
 export const BenefitsBoardTitle = styled.div`
   font-size:40px;
@@ -193,13 +193,7 @@ export const BenefitsBoardNomalText = styled.div`
   font-size:25px;
   margin-bottom:50px;  
 `; 
-=======
-  min-height: 100vh;
-  /* height: 100vh; */
-  display: flex;
-  justify-content: center;
-  padding-top: 20px;
-`;
+
 
 export const Content = styled.div`
   display: flex;
@@ -308,4 +302,3 @@ export const PaginationButton = styled.button`
   cursor: pointer;
   background-color: #fff
 `;
->>>>>>> c085065a1b9f974983a5c93acd5b3e7aa1c96314
