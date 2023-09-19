@@ -441,3 +441,9 @@ export const WritingSubmitBtton = styled(DetailedPostAttendButton)`
   height: 50px;
   margin-left:200px;
 `
+
+export const ModifyMyInfoContainer = styled(SmallContainer)`
+  width:450px;
+  height:350px;
+  padding:20px;
+`

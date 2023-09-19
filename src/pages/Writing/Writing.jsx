@@ -25,6 +25,8 @@ const Writing = () => {
     });
     console.log(formData);
   };
+
+  
   return (
     <>
       <Header />
