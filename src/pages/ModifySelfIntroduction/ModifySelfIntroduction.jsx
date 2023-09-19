@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom"; // React Router v6에서는 useN
 import Grid from "@mui/material/Grid";
 import {
   FormContainer,
-  StyledLabel,
+  ModifySelfIntroLabel,
   StyledInput,
   StyledButton,
+  ModifySelfIntroContainer,
+  ModifySelfIntroInput,
 } from "../../styles/Main";
+import Header from "components/Header";
 
 const ModifySelfIntroduction = () => {
   // 폼 데이터 스테이트
@@ -16,8 +19,8 @@ const ModifySelfIntroduction = () => {
     farm_want: "",
     farm_why: "",
     user_profileImage: "null",
-    farm_name:'',
-    farm_address:'',
+    farm_name: "",
+    farm_address: "",
   });
 
   // 인풋 데이터 감지
@@ -55,10 +58,9 @@ const ModifySelfIntroduction = () => {
 
   // 렌더링
   return (
-    <div style={{ padding: "50px" }}>
-      <FormContainer
-        style={{ margin: "0 auto", width: "1000px", height: "1000px" }}
-      >
+    <>
+    <Header/>
+      <ModifySelfIntroContainer>
         <form
           onSubmit={handleSubmit}
           style={{
@@ -69,19 +71,16 @@ const ModifySelfIntroduction = () => {
         >
           <Grid
             container
-            rowSpacing={3}
+            rowSpacing={1}
             justifyContent="center"
-            style={{ margin: "50px", marginTop: "100px" }}
+            style={{ width:'400px' }}
           >
             {/* 재배종목 */}
-            <Grid item xs={4} style={{ paddingRight: "15px" }}>
+            <Grid item xs={6} style={{ paddingRight: "15px" }}>
               <div>
-                <StyledLabel>재배종목</StyledLabel>
+                <ModifySelfIntroLabel>재배종목</ModifySelfIntroLabel>
                 <br />
-                <StyledInput
-                  width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                <ModifySelfIntroInput
                   name="farm_species"
                   value={formData.farm_species}
                   onChange={handleChange}
@@ -90,14 +89,11 @@ const ModifySelfIntroduction = () => {
               </div>
             </Grid>
             {/* 취미 */}
-            <Grid item xs={4} style={{ paddingLeft: "15px" }}>
+            <Grid item xs={6} style={{ paddingLeft: "15px" }}>
               <div>
-                <StyledLabel>취미</StyledLabel>
+                <ModifySelfIntroLabel>취미</ModifySelfIntroLabel>
                 <br />
-                <StyledInput
-                  width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                <ModifySelfIntroInput
                   name="user_hobit"
                   value={formData.user_hobit}
                   onChange={handleChange}
@@ -106,14 +102,11 @@ const ModifySelfIntroduction = () => {
               </div>
             </Grid>
             {/* 이런 사람들과 친해지고 싶어요 */}
-            <Grid item xs={8}>
+            <Grid item xs={12}>
               <div>
-                <StyledLabel>이런 사람들과 친해지고 싶어요</StyledLabel>
+                <ModifySelfIntroLabel>이런 사람들과 친해지고 싶어요</ModifySelfIntroLabel>
                 <br />
-                <StyledInput
-                  width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                <ModifySelfIntroInput
                   name="farm_want"
                   value={formData.farm_want}
                   onChange={handleChange}
@@ -122,14 +115,11 @@ const ModifySelfIntroduction = () => {
               </div>
             </Grid>
             {/* 귀농한 이유 */}
-            <Grid item xs={8}>
+            <Grid item xs={12}>
               <div>
-                <StyledLabel>귀농한 이유</StyledLabel>
+                <ModifySelfIntroLabel>귀농한 이유</ModifySelfIntroLabel>
                 <br />
-                <StyledInput
-                  width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                <ModifySelfIntroInput
                   name="farm_why"
                   value={formData.farm_why}
                   onChange={handleChange}
@@ -137,33 +127,12 @@ const ModifySelfIntroduction = () => {
                 />
               </div>
             </Grid>
-            {/* 빈줄 */}
-            <Grid item xs={10}/>
-            {/* 농장 이름 */}
-            <Grid item xs={4} style={{ paddingRight: "15px" }}>
-              <div>
-                <StyledLabel>농장 이름</StyledLabel>
-                <br />
-                <StyledInput
-                  width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
-                  name="farm_name"
-                  value={formData.farm_name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </Grid>
             {/* 농장 주소 */}
-            <Grid item xs={4} style={{ paddingLeft: "15px" }}>
+            <Grid item xs={12}>
               <div>
-                <StyledLabel>농장 주소</StyledLabel>
+                <ModifySelfIntroLabel>농장 주소</ModifySelfIntroLabel>
                 <br />
-                <StyledInput
-                  width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                <ModifySelfIntroInput
                   name="farm_address"
                   value={formData.farm_address}
                   onChange={handleChange}
@@ -173,8 +142,8 @@ const ModifySelfIntroduction = () => {
             </Grid>
           </Grid>
           {/* 농장 사진 */}
-          <div style={{ marginBottom: "50px", paddingRight: "280px" }}>
-            <StyledLabel>농장 사진</StyledLabel>
+          <div style={{ margin:"5px 0 5px -225px", }}>
+            <ModifySelfIntroLabel>농장 사진</ModifySelfIntroLabel>
             <div>
               <input
                 type="file"
@@ -187,17 +156,19 @@ const ModifySelfIntroduction = () => {
               <StyledButton
                 onClick={() => fileInputRef.current.click()} // ref를 사용하여 파일 입력란 클릭
                 style={{
-                  width: "200px",
-                  height: "80px",
-                  fontSize: "30px",
+                  width: "60px",
+                  height: "30px",
+                  fontSize: "12px",
+                  fontWeight:'bold',
                   marginLeft: "0px",
+                  marginRight:'5px',
                 }}
               >
                 업로드
               </StyledButton>
               <span
                 style={{
-                  fontSize: "20px",
+                  fontSize: "12px",
                   fontWeight: "bold",
                   color: "#A4651B",
                 }}
@@ -209,15 +180,15 @@ const ModifySelfIntroduction = () => {
           {/* 회원가입 버튼 */}
           <StyledButton
             type="submit"
-            style={{ width: "680px" }}
+            style={{ width: "400px" }}
             backgroundColor="#A4651B"
             border="3px solid #dd923d"
           >
             저장
           </StyledButton>
         </form>
-      </FormContainer>
-    </div>
+      </ModifySelfIntroContainer>
+    </>
   );
 };
 export default ModifySelfIntroduction;

@@ -447,3 +447,18 @@ export const ModifyMyInfoContainer = styled(SmallContainer)`
   height:350px;
   padding:20px;
 `
+
+export const ModifySelfIntroContainer = styled(ModifyMyInfoContainer)`
+  width:450px;
+  height:350px;
+  padding:20px;
+`
+
+export const ModifySelfIntroLabel = styled(StyledLabel)`
+font-size:15px;
+`
+export const ModifySelfIntroInput = styled(StyledInput)`
+width:100%;
+height: 20px;
+font-size:15px;
+`
