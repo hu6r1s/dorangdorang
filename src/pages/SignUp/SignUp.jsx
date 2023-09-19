@@ -54,7 +54,7 @@ const SignUp = () => {
   return (
     <div>
       <Header/>
-      <FormContainer style={{padding:'25px 0'}}>
+      <FormContainer style={{padding:'40px 0', height:'400px'}}>
         <RoundedLogo1 src={logo1} />
         <form
           onSubmit={handleSubmit}
@@ -79,13 +79,12 @@ const SignUp = () => {
                 <StyledInput
                   width={"100%"}
                   height={"20px"}
-                  fontSize={"20px"}
+                  fontSize={"15px"}
                   name="user_nickname"
                   value={formData.user_nickname}
                   onChange={handleChange}
                   required
                 />
-                <DuplicateCheckButton>중복검사</DuplicateCheckButton>
               </div>
             </Grid>
             {/* 나이 */}
@@ -96,7 +95,7 @@ const SignUp = () => {
                 <StyledInput
                   width={"100%"}
                   height={"20px"}
-                  fontSize={"20px"}
+                  fontSize={"15px"}
                   name="user_age"
                   value={formData.user_age}
                   onChange={handleChange}
@@ -112,7 +111,7 @@ const SignUp = () => {
                 <StyledInput
                   width={"100%"}
                   height={"20px"}
-                  fontSize={"20px"}
+                  fontSize={"15px"}
                   name="user_sex"
                   value={formData.user_sex}
                   onChange={handleChange}
@@ -128,13 +127,12 @@ const SignUp = () => {
                 <StyledInput
                   width={"100%"}
                   height={"20px"}
-                  fontSize={"20px"}
+                  fontSize={"15px"}
                   name="user_id"
                   value={formData.user_id}
                   onChange={handleChange}
                   required
                 />
-                <DuplicateCheckButton>중복검사</DuplicateCheckButton>
               </div>
             </Grid>
 
@@ -146,7 +144,7 @@ const SignUp = () => {
                 <StyledInput
                   width={"100%"}
                   height={"20px"}
-                  fontSize={"20px"}
+                  fontSize={"15px"}
                   name="user_password"
                   value={formData.user_password}
                   onChange={handleChange}
@@ -163,7 +161,7 @@ const SignUp = () => {
                 <StyledInput
                   width={"100%"}
                   height={"20px"}
-                  fontSize={"20px"}
+                  fontSize={"15px"}
                   name="user_description"
                   value={formData.user_description}
                   onChange={handleChange}
@@ -173,7 +171,7 @@ const SignUp = () => {
             </Grid>
           </Grid>
           <div
-            style={{ fontSize: "20px", fontWeight: "bold", color: "#A4651B", margin:'10px 0px 5px 0px' }}
+            style={{ fontSize: "20px", fontWeight: "bold", color: "#A4651B", margin:'50px 0px 5px 0px' }}
           >
             현재 농사 중 이신가요?
           </div>

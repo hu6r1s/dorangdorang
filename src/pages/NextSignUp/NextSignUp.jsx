@@ -60,7 +60,7 @@ const NextSignUp = () => {
   return (
     <>
   <Header/>
-      <FormContainer style={{padding:'25px 0', height:'360px'}}>
+      <FormContainer style={{padding:'25px 0', height:'400px'}}>
         <form
           onSubmit={handleSubmit}
           style={{
@@ -73,16 +73,17 @@ const NextSignUp = () => {
             container
             rowSpacing={1.5}
             justifyContent="center"
+            style={{width:'300px'}}
           >
             {/* 재배종목 */}
-            <Grid item xs={4} style={{ paddingRight: "15px" }}>
+            <Grid item xs={6} style={{ paddingRight: "15px" }}>
               <div>
                 <StyledLabel style={{fontSize:'15px'}}>재배종목</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
                   height={"20px"}
-                  fontSize={"20px"}
+                  fontSize={"15px"}
                   name="farm_species"
                   value={formData.farm_species}
                   onChange={handleChange}
@@ -91,14 +92,14 @@ const NextSignUp = () => {
               </div>
             </Grid>
             {/* 취미 */}
-            <Grid item xs={4} style={{ paddingLeft: "15px" }}>
+            <Grid item xs={6} style={{ paddingLeft: "15px" }}>
               <div>
                 <StyledLabel style={{fontSize:'15px'}}>취미</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
                   height={"20px"}
-                  fontSize={"20px"}
+                  fontSize={"15px"}
                   name="user_hobit"
                   value={formData.user_hobit}
                   onChange={handleChange}
@@ -107,14 +108,14 @@ const NextSignUp = () => {
               </div>
             </Grid>
             {/* 이런 사람들과 친해지고 싶어요 */}
-            <Grid item xs={8}>
+            <Grid item xs={12}>
               <div>
                 <StyledLabel style={{fontSize:'15px'}}>이런 사람들과 친해지고 싶어요</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
                   height={"20px"}
-                  fontSize={"20px"}
+                  fontSize={"15px"}
                   name="farm_want"
                   value={formData.farm_want}
                   onChange={handleChange}
@@ -123,14 +124,14 @@ const NextSignUp = () => {
               </div>
             </Grid>
             {/* 귀농한 이유 */}
-            <Grid item xs={8}>
+            <Grid item xs={12}>
               <div>
                 <StyledLabel style={{fontSize:'15px'}}>귀농한 이유</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
                   height={"20px"}
-                  fontSize={"20px"}
+                  fontSize={"15px"}
                   name="farm_why"
                   value={formData.farm_why}
                   onChange={handleChange}
@@ -138,17 +139,15 @@ const NextSignUp = () => {
                 />
               </div>
             </Grid>
-            {/* 빈줄 */}
-            <Grid item xs={10}/>
             {/* 농장 이름 */}
-            <Grid item xs={4} style={{ paddingRight: "15px" }}>
+            <Grid item xs={6} style={{ paddingRight: "15px" }}>
               <div>
                 <StyledLabel style={{fontSize:'15px'}}>농장 이름</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
                   height={"20px"}
-                  fontSize={"20px"}
+                  fontSize={"15px"}
                   name="farm_name"
                   value={formData.farm_name}
                   onChange={handleChange}
@@ -157,14 +156,14 @@ const NextSignUp = () => {
               </div>
             </Grid>
             {/* 농장 주소 */}
-            <Grid item xs={4} style={{ paddingLeft: "15px" }}>
+            <Grid item xs={6} style={{ paddingLeft: "15px" }}>
               <div>
                 <StyledLabel style={{fontSize:'15px'}}>농장 주소</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
                   height={"20px"}
-                  fontSize={"20px"}
+                  fontSize={"15px"}
                   name="farm_address"
                   value={formData.farm_address}
                   onChange={handleChange}
