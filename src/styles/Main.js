@@ -413,3 +413,31 @@ export const DetailedPostCommentContainer = styled.div`
   height: 420px;
   overflow: auto;
 `;
+
+// Writing //
+export const WritingContainer = styled(DetailedPostContainer)`
+height: 600px;
+`
+
+export const WritingTitleInput = styled.input`
+  width:400px;
+  height:50px;
+  font-size:20px;
+  font-weight:bold;
+  border: 1px solid gray;
+  border-radius:5px;
+`
+export const WritingTextArea = styled.textarea`
+width:550px;
+height:400px;
+font-size:20px;
+margin: 5px 0px 20px 0px;
+
+`
+export const WritingCategory = styled.input`
+`
+export const WritingSubmitBtton = styled(DetailedPostAttendButton)`
+  width:150px;
+  height: 50px;
+  margin-left:200px;
+`

@@ -11,6 +11,7 @@ import "./App.css";
 import ModifySelfIntroduction from "pages/ModifySelfIntroduction/ModifySelfIntroduction";
 import DetailedPost from "pages/DetailedPost/DetailedPost";
 import DetailedPost2 from "pages/DetailedPost/DetailedPost2";
+import Writing from "pages/Writing/Writing";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/BenefitsBoard" element={<BenefitsBoard />} />
         <Route path="/DetailedPost" element={<DetailedPost />} />
         <Route path="/DetailedPost2" element={<DetailedPost2 />} />
+        <Route path="/Writing" element={<Writing />} />
       </Routes>
     </Router>
   );
