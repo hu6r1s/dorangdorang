@@ -1,6 +1,5 @@
-import styled from "styled-components";
 import { Button } from "@mui/material";
-import Jandi from 'assets/images/jandi.png'
+import styled from "styled-components";
 
 
 export const LogoImage = styled.img`
@@ -39,8 +38,17 @@ export const MenuItem = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  background: #EEECD8 url(${Jandi}) left top/5% repeat;
-  height: 100vh;
+  min-height: 100vh;
+  /* height: 100vh; */
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+`;
+
+export const Content = styled.div`
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
 `;
 
 
@@ -119,7 +127,7 @@ export const StyledButton = styled(Button)(
 );
 
 // SignUp Page  About //
-export const DuplicateCheckButton=styled.button`
+export const DuplicateCheckButton = styled.button`
   position:absolute;
   top: 27px;
   right:-8px;
@@ -148,7 +156,7 @@ export const SmallContainer = styled.div`
   height: 1000px;
   border-radius: 40px;
   margin: 0 auto;
-`; 
+`;
 
 export const MyPageSector = styled.div`
   background-color: #f7f6eb;
@@ -158,64 +166,57 @@ export const MyPageSector = styled.div`
   border-radius: 40px;
   margin: 0 auto;
   margin-bottom:20px;
-`; 
+`;
 
 export const FlexBox = styled.div`
   display:flex;
-`; 
+`;
 
 export const MyPageTitle = styled.div`
   font-size:30px;
   font-weight:bold;
   margin-left:50px;
   margin-bottom:10px;
-`; 
+`;
 
 export const MyPageSubtitle = styled.div`
   font-size:25px;
   font-weight:bold;
   margin-bottom:5px;
-`; 
+`;
 
 export const MyPageNomalText = styled.div`
   font-size:20px;
-`; 
+`;
 
 export const MyPageModifyButton = styled.div`
   font-size:20px;
   background-color: rgba(255, 0, 0, 0);
-`; 
+`;
 
 // BenefitsBoard Page About //
 export const BenefitsBoardTitle = styled.div`
   font-size:40px;
   font-weight:bold;
   margin-bottom:10px;
-`; 
+`;
 
 export const BenefitsBoardSubtitle = styled.div`
   font-size:25px;
   font-weight:bold;
   color:#6A6969;
   margin-bottom:5px;
-`; 
+`;
 
 export const BenefitsBoardCategory = styled.div`
   font-size:35px;
   font-weight:bold;
   margin-bottom:5px;
-`; 
+`;
 
 export const BenefitsBoardNomalText = styled.div`
   font-size:25px;
   margin-bottom:50px;  
-`; 
-
-
-export const Content = styled.div`
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
 `;
 
 export const BoardContainer = styled.div`
