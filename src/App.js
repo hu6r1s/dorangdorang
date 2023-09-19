@@ -8,6 +8,7 @@ import SignIn from "pages/SignIn/SignIn";
 import SignUp from "pages/SignUp/SignUp";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
+import ModifySelfIntroduction from "pages/ModifySelfIntroduction/ModifySelfIntroduction";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/NextSignUp" element={<NextSignUp />} />
         <Route path="/ModifyMyInfo" element={<ModifyMyInfo />} />
+        <Route path="/ModifySelfIntroduction" element={<ModifySelfIntroduction />} />
         <Route path="/MyPage" element={<MyPage />} />
         <Route path="/BenefitsBoard" element={<BenefitsBoard />} />
       </Routes>
