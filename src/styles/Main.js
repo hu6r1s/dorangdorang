@@ -306,6 +306,7 @@ export const DetailedPostContainer = styled(SmallContainer)`
   width: 600px;
   height: 800px;
   padding: 20px;
+  margin-top:50px;
 `;
 export function DetailedPostPublisher({ nickname, time, category }) {
   return (
@@ -417,6 +418,7 @@ export const DetailedPostCommentContainer = styled.div`
 // Writing //
 export const WritingContainer = styled(DetailedPostContainer)`
 height: 600px;
+margin-top:50px;
 `
 
 export const WritingTitleInput = styled.input`
@@ -446,6 +448,7 @@ export const ModifyMyInfoContainer = styled(SmallContainer)`
   width:450px;
   height:350px;
   padding:20px;
+  margin-top:120px;
 `
 
 export const ModifySelfIntroContainer = styled(ModifyMyInfoContainer)`
