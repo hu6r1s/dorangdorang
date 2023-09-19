@@ -1,7 +1,6 @@
 import { Button } from "@mui/material";
 import styled from "styled-components";
 
-
 export const LogoImage = styled.img`
   height: 80px;
   width: 160px;
@@ -20,7 +19,7 @@ export const HeaderContainer = styled.div`
   /* justify-content: space-between; */
   align-items: center;
   padding: 0 100px;
-  background-color: #EEECD8;
+  background-color: #eeecd8;
 `;
 
 export const MenuContainer = styled.div`
@@ -51,12 +50,11 @@ export const Content = styled.div`
   /* align-items: center; */
 `;
 
-
 // SignIn Page About //
 // 폼 컨테이너
 export const FormContainer = styled.div`
   width: 450px;
-  height: 300px;
+  height: 350px;
   border: 3px solid #8f6b42;
   border-radius: 30px;
   background-color: #f7f6eb;
@@ -89,10 +87,10 @@ export const StyledLabel = styled.label`
 export const StyledInput = styled.input`
   width: ${(props) => props.width || "250px"};
   height: ${(props) => props.height || "40px"};
-  border-radius: ${(props) => props.borderRadius || "10px"};
+  border-radius: ${(props) => props.borderRadius || "5px"};
   font-size: ${(props) => props.fontSize || "20px"};
   font-weight: ${(props) => props.fontWeight || "bold"};
-  margin-top:5px;
+  margin-top: 5px;
 `;
 
 // 버튼 컴포넌트
@@ -130,16 +128,15 @@ export const StyledButton = styled(Button)(
 export const DuplicateCheckButton = styled.button`
   position:absolute;
   top: 27px;
-  right:-8px;
-  width:50px;
-  height:25px;
-  border-radius:10px;
-  font-size:8px;
-  font-weight:bold;
-  color:#A4651B;
-  background-color:#C3E79F;
-`
-
+  right: -8px;
+  width: 50px;
+  height: 25px;
+  border-radius: 10px;
+  font-size: 8px;
+  font-weight: bold;
+  color: #a4651b;
+  background-color: #c3e79f;
+`;
 
 // MyPage Page About //
 export const StyledAvatar = styled.img`
@@ -161,8 +158,8 @@ export const SmallContainer = styled.div`
 export const MyPageSector = styled.div`
   background-color: #f7f6eb;
   border: 3px solid #8f6b42;
-  width: 700px;
-  padding:10px;
+  width: 550px;
+  padding: 10px;
   border-radius: 40px;
   margin: 0 auto;
   margin-bottom:20px;
@@ -190,7 +187,7 @@ export const MyPageNomalText = styled.div`
 `;
 
 export const MyPageModifyButton = styled.div`
-  font-size:20px;
+  font-size: 15px;
   background-color: rgba(255, 0, 0, 0);
 `;
 
@@ -216,7 +213,7 @@ export const BenefitsBoardCategory = styled.div`
 
 export const BenefitsBoardNomalText = styled.div`
   font-size:25px;
-  margin-bottom:50px;  
+  margin-bottom:50px;
 `;
 
 export const BoardContainer = styled.div`
@@ -280,7 +277,7 @@ export const NavItem = styled.div`
   padding: 10px;
   text-align: center;
   font-family: Dongle-Regular, sans-serif;
-  
+
   &:hover {
     font-weight: bold;
   }
@@ -289,7 +286,7 @@ export const NavItem = styled.div`
 export const Title = styled.div`
   font-family: Dongle-Bold, sans-serif;
   font-size: 30px;
-  color: #AE5E00;
+  color: #ae5e00;
   margin: 15px 0;
 `;
 
@@ -297,7 +294,7 @@ export const UpT = styled.div`
   width: 50px;
   height: 28px;
   margin-left: 10px;
-  background-color: #FF3E3E;
+  background-color: #ff3e3e;
   border-radius: 30px;
   display: flex;
   justify-content: center;
@@ -317,5 +314,170 @@ export const PaginationButton = styled.button`
   padding: 5px 10px;
   border: 1px solid #ccc;
   cursor: pointer;
-  background-color: #fff
+  background-color: #fff;
 `;
+
+// DetailedPost //
+export const DetailedPostContainer = styled(SmallContainer)`
+  width: 600px;
+  height: 800px;
+  padding: 20px;
+  margin-top:50px;
+`;
+export function DetailedPostPublisher({ nickname, time, category }) {
+  return (
+    <>
+      <div style={{marginRight:'180px'}}>
+        <PublisherNickName>{nickname}</PublisherNickName>
+        <FlexBox>
+          <PublisherTimeNCategory>{time}</PublisherTimeNCategory>
+          <PublisherTimeNCategory>{category}</PublisherTimeNCategory>
+        </FlexBox>
+      </div>
+    </>
+  );
+}
+
+export function DetailedAnothers({ src, nickname, time, comment }) {
+  return (
+    <>
+      <div style={{ marginBottom: "10px" }}>
+        <FlexBox>
+          <PublisherProfile src={src}></PublisherProfile>
+          <div>
+            <PublisherNickName>{nickname}</PublisherNickName>
+            <PublisherTimeNCategory>{time}</PublisherTimeNCategory>
+          </div>
+        </FlexBox>
+        <AnothersComment>{comment}</AnothersComment>
+      </div>
+    </>
+  );
+}
+
+export const PublisherProfile = styled.img`
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 100%;
+`;
+export const PublisherNickName = styled.div`
+  font-size: 20px;
+`;
+export const PublisherTimeNCategory = styled.div`
+  font-size: 15px;
+  color: #5f5f5f;
+`;
+export const AnothersProfile = styled.img`
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+`;
+export const AnothersNickName = styled.div`
+  font-size: 12px;
+`;
+export const AnothersTime = styled.div`
+  font-size: 10px;
+  color: #5f5f5f;
+`;
+
+export const AnothersComment = styled.div`
+  font-size: 20px;
+  margin-left: 50px;
+  padding: 10px;
+`;
+
+export const DetailedPostTitle = styled.div`
+  font-size: 40px;
+  margin-bottom: 10px;
+`;
+
+export const DetailedPostContents = styled.div`
+  font-size: 20px;
+`;
+export const DetailedPostInput = styled.input`
+  width: 400px;
+  height: 50px;
+  border-radius:10px;
+  margin-right: 10px;
+  font-size:20px;
+`;
+export const DetailedPostSendButton = styled.button`
+  width: 150px;
+  height: 50px;
+  background-color: #7bb144;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  border: 0;
+  border-radius: 10px;
+  &:hover{
+    cursor:pointer;
+    opacity:0.9;
+  }
+`;
+
+export const DetailedPostAttendButton = styled(DetailedPostSendButton)``;
+
+export const DetailedPostHorizon = styled.hr`
+  margin: 10px 0px;
+  border: 1px solid #7BB144;
+`;
+
+export const DetailedPostCommentContainer = styled.div`
+  margin: 30px 0px;
+  height: 420px;
+  overflow: auto;
+`;
+
+// Writing //
+export const WritingContainer = styled(DetailedPostContainer)`
+height: 600px;
+margin-top:50px;
+`
+
+export const WritingTitleInput = styled.input`
+  width:400px;
+  height:50px;
+  font-size:20px;
+  font-weight:bold;
+  border: 1px solid gray;
+  border-radius:5px;
+`
+export const WritingTextArea = styled.textarea`
+width:550px;
+height:400px;
+font-size:20px;
+margin: 5px 0px 20px 0px;
+
+`
+export const WritingCategory = styled.input`
+`
+export const WritingSubmitBtton = styled(DetailedPostAttendButton)`
+  width:150px;
+  height: 50px;
+  margin-left:200px;
+`
+
+export const ModifyMyInfoContainer = styled(SmallContainer)`
+  width:450px;
+  height:350px;
+  padding:20px;
+  margin-top:120px;
+`
+
+export const ModifySelfIntroContainer = styled(ModifyMyInfoContainer)`
+  width:450px;
+  height:350px;
+  padding:20px;
+`
+
+export const ModifySelfIntroLabel = styled(StyledLabel)`
+font-size:15px;
+`
+export const ModifySelfIntroInput = styled(StyledInput)`
+width:100%;
+height: 20px;
+font-size:15px;
+`
