@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // React Router v6에서는 useNavigate를 사용합니다.
-import logo1 from "../../assets/images/logo.png";
+import logo1 from "../../assets/images/logo2.png";
 import {
   FormContainer,
   RoundedLogo1,
@@ -10,6 +10,7 @@ import {
   DuplicateCheckButton
 } from "../../styles/Main";
 import Grid from "@mui/material/Grid";
+import Header from '../../components/Header'
 
 
 const SignUp = () => {
@@ -52,7 +53,8 @@ const SignUp = () => {
   // 렌더링
   return (
     <div>
-      <FormContainer style={{ paddingTop: "100px" }}>
+      <Header/>
+      <FormContainer style={{padding:'25px 0'}}>
         <RoundedLogo1 src={logo1} />
         <form
           onSubmit={handleSubmit}
@@ -64,20 +66,20 @@ const SignUp = () => {
         >
           <Grid
             container
-            rowSpacing={3}
-            columnSpacing={{ xs: 6 }}
+            rowSpacing={0.5}
+            columnSpacing={{ xs: 3 }}
             justifyContent="center"
-            style={{ margin: "50px" }}
+            style={{ width:'300px' }}
           >
             {/* 닉네임 */}
-            <Grid item xs={3}>
+            <Grid item xs={4}>
               <div style={{position:'relative'}}>
-                <StyledLabel>닉네임</StyledLabel>
+                <StyledLabel style={{fontSize:'15px'}}>닉네임</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                  height={"20px"}
+                  fontSize={"20px"}
                   name="user_nickname"
                   value={formData.user_nickname}
                   onChange={handleChange}
@@ -87,14 +89,14 @@ const SignUp = () => {
               </div>
             </Grid>
             {/* 나이 */}
-            <Grid item xs={3}>
+            <Grid item xs={4}>
               <div>
-                <StyledLabel>나이</StyledLabel>
+                <StyledLabel style={{fontSize:'15px'}}>나이</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                  height={"20px"}
+                  fontSize={"20px"}
                   name="user_age"
                   value={formData.user_age}
                   onChange={handleChange}
@@ -103,14 +105,14 @@ const SignUp = () => {
               </div>
             </Grid>
             {/* 성별 */}
-            <Grid item xs={3}>
+            <Grid item xs={4}>
               <div>
-                <StyledLabel>성별</StyledLabel>
+                <StyledLabel style={{fontSize:'15px'}}>성별</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                  height={"20px"}
+                  fontSize={"20px"}
                   name="user_sex"
                   value={formData.user_sex}
                   onChange={handleChange}
@@ -118,17 +120,15 @@ const SignUp = () => {
                 />
               </div>
             </Grid>
-            {/* 줄 채우기 */}
-            <Grid item xs={10}></Grid>
             {/* 아이디 */}
-            <Grid item xs={9}>
+            <Grid item xs={12}>
               <div style={{position:'relative'}}>
-                <StyledLabel>아이디</StyledLabel>
+                <StyledLabel style={{fontSize:'15px'}}>아이디</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                  height={"20px"}
+                  fontSize={"20px"}
                   name="user_id"
                   value={formData.user_id}
                   onChange={handleChange}
@@ -137,15 +137,16 @@ const SignUp = () => {
                 <DuplicateCheckButton>중복검사</DuplicateCheckButton>
               </div>
             </Grid>
+
             {/* 비밀번호 */}
-            <Grid item xs={9}>
+            <Grid item xs={12}>
               <div>
-                <StyledLabel>비밀번호</StyledLabel>
+                <StyledLabel style={{fontSize:'15px'}}>비밀번호</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                  height={"20px"}
+                  fontSize={"20px"}
                   name="user_password"
                   value={formData.user_password}
                   onChange={handleChange}
@@ -153,15 +154,16 @@ const SignUp = () => {
                 />
               </div>
             </Grid>
+
             {/* 한 줄 자기소개 */}
-            <Grid item xs={9}>
+            <Grid item xs={12}>
               <div>
-                <StyledLabel>한 줄 자기소개</StyledLabel>
+                <StyledLabel style={{fontSize:'15px'}}>한 줄 자기소개</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
-                  height={"50px"}
-                  fontSize={"25px"}
+                  height={"20px"}
+                  fontSize={"20px"}
                   name="user_description"
                   value={formData.user_description}
                   onChange={handleChange}
@@ -171,7 +173,7 @@ const SignUp = () => {
             </Grid>
           </Grid>
           <div
-            style={{ fontSize: "40px", fontWeight: "bold", color: "#A4651B" }}
+            style={{ fontSize: "20px", fontWeight: "bold", color: "#A4651B", margin:'10px 0px 5px 0px' }}
           >
             현재 농사 중 이신가요?
           </div>
@@ -179,7 +181,7 @@ const SignUp = () => {
           <div style={{ display: "flex" }}>
             <StyledButton
               type="submit"
-              style={{ width: "300px" }}
+              style={{ width: "120px", marginRight:'10px' }}
               backgroundColor="#f79b33"
               border="3px solid #75c13e"
               onClick={()=>setWhatButton('YES')}
@@ -189,7 +191,7 @@ const SignUp = () => {
             <StyledButton
               type="submit"
               onClick={() => navigate("/")}
-              style={{ width: "300px" }}
+              style={{ width: "120px" }}
               backgroundColor="#b97d38"
               border="3px solid #dd923d"
             >
