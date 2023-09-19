@@ -1,6 +1,5 @@
-import styled from "styled-components";
 import { Button } from "@mui/material";
-import Jandi from "assets/images/jandi.png";
+import styled from "styled-components";
 
 export const LogoImage = styled.img`
   height: 80px;
@@ -12,19 +11,43 @@ export const LoginButton = styled.div`
   cursor: pointer;
   font-size: 40px;
   font-family: Dongle-Bold, sans-serif;
+  margin-left: auto;
 `;
 
 export const HeaderContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   padding: 0 100px;
   background-color: #eeecd8;
 `;
 
+export const MenuContainer = styled.div`
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  margin-left: 30px;
+`;
+
+export const MenuItem = styled.div`
+  cursor: pointer;
+  font-size: 40px;
+  font-family: Dongle-Bold, sans-serif;
+  padding-right: 30px;
+`;
+
 export const ContentContainer = styled.div`
-  background: #eeecd8 url(${Jandi}) left top/5% repeat;
-  height: 100vh;
+  min-height: 100vh;
+  /* height: 100vh; */
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+`;
+
+export const Content = styled.div`
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
 `;
 
 // SignIn Page About //
@@ -103,7 +126,7 @@ export const StyledButton = styled(Button)(
 
 // SignUp Page  About //
 export const DuplicateCheckButton = styled.button`
-  position: absolute;
+  position:absolute;
   top: 27px;
   right: -8px;
   width: 50px;
@@ -139,28 +162,28 @@ export const MyPageSector = styled.div`
   padding: 10px;
   border-radius: 40px;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom:20px;
 `;
 
 export const FlexBox = styled.div`
-  display: flex;
+  display:flex;
 `;
 
 export const MyPageTitle = styled.div`
-  font-size: 25px;
-  font-weight: bold;
-  margin-left: 25px;
-  margin-bottom: 10px;
+  font-size:30px;
+  font-weight:bold;
+  margin-left:50px;
+  margin-bottom:10px;
 `;
 
 export const MyPageSubtitle = styled.div`
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-size:25px;
+  font-weight:bold;
+  margin-bottom:5px;
 `;
 
 export const MyPageNomalText = styled.div`
-  font-size: 15px;
+  font-size:20px;
 `;
 
 export const MyPageModifyButton = styled.div`
@@ -170,33 +193,27 @@ export const MyPageModifyButton = styled.div`
 
 // BenefitsBoard Page About //
 export const BenefitsBoardTitle = styled.div`
-  font-size: 40px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  font-size:40px;
+  font-weight:bold;
+  margin-bottom:10px;
 `;
 
 export const BenefitsBoardSubtitle = styled.div`
-  font-size: 25px;
-  font-weight: bold;
-  color: #6a6969;
-  margin-bottom: 5px;
+  font-size:25px;
+  font-weight:bold;
+  color:#6A6969;
+  margin-bottom:5px;
 `;
 
 export const BenefitsBoardCategory = styled.div`
-  font-size: 35px;
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-size:35px;
+  font-weight:bold;
+  margin-bottom:5px;
 `;
 
 export const BenefitsBoardNomalText = styled.div`
-  font-size: 25px;
-  margin-bottom: 50px;
-`;
-
-export const Content = styled.div`
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
+  font-size:25px;
+  margin-bottom:50px;
 `;
 
 export const BoardContainer = styled.div`
@@ -215,14 +232,13 @@ export const StyledTable = styled.table`
   border-collapse: collapse;
   background-color: #fff;
   border: 1px solid #ccc;
-  font-family: Dongle-Regular, sans-serif;
+  /* font-family: Dongle-Regular, sans-serif; */
 `;
 
 export const TableHeader = styled.th`
   background-color: #f0f0f0; /* 테이블 헤더 배경색 */
   padding: 10px;
-  text-align: left;
-  font-size: 22px;
+  font-size: 14px;
   border-bottom: 1px solid #ccc;
   text-align: center;
 `;
@@ -231,13 +247,13 @@ export const TableCell = styled.td`
   padding: 10px;
   /* border: 1px solid #ccc; */
   border-bottom: 1px solid #ccc;
-  font-size: 18px;
+  font-size: 13px;
   text-align: center;
 `;
 
 export const NavContainer = styled.div`
   width: 250px;
-  height: 260px;
+  height: 320px;
   background-color: #f0f0f0;
   padding: 20px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
