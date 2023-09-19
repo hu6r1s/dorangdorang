@@ -111,7 +111,7 @@ const Board = ({ type }) => {
     <>
       {type === "saecham" && (
         <BoardItem>
-          <Title><a id="saecham">새참 먹자 & 품앗이</a></Title>
+          <Title id="saecham">새참 먹자 & 품앗이</Title>
           <StyledTable>
             <tbody>
               {saechams.map((saecham) => (
@@ -130,7 +130,7 @@ const Board = ({ type }) => {
 
       {type === "gomin" && (
         <BoardItem>
-          <Title><a id="gomin">고민 토론</a></Title>
+          <Title id="gomin">고민 토론</Title>
           <StyledTable>
             <thead>
               <tr>
@@ -167,7 +167,7 @@ const Board = ({ type }) => {
 
       {type === "jiwon" && (
         <BoardItem>
-          <Title><a id="jiwon">지원 제도</a></Title>
+          <Title id="jiwon">지원 제도</Title>
           <StyledTable>
             <thead>
               <tr>
