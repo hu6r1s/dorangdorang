@@ -13,12 +13,15 @@ import {
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Carousel from "components/Carousel";
-
+import Header from "components/Header";
 
 const MyPage = () => {
   const navigate = useNavigate();
 
   return (
+    <>
+
+      <Header></Header>
     <div style={{ padding: "50px" }}>
       <SmallContainer style={{ height: "1000px", width:'600px', padding:'10px'}}>
         {/* 내 정보 섹터 */}
@@ -113,6 +116,7 @@ const MyPage = () => {
           </div>
       </SmallContainer>
     </div>
+    </>
   );
 };
 
