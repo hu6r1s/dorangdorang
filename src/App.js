@@ -10,6 +10,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import ModifySelfIntroduction from "pages/ModifySelfIntroduction/ModifySelfIntroduction";
 import DetailedPost from "pages/DetailedPost/DetailedPost";
+import DetailedPost2 from "pages/DetailedPost/DetailedPost2";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/MyPage" element={<MyPage />} />
         <Route path="/BenefitsBoard" element={<BenefitsBoard />} />
         <Route path="/DetailedPost" element={<DetailedPost />} />
+        <Route path="/DetailedPost2" element={<DetailedPost2 />} />
       </Routes>
     </Router>
   );
