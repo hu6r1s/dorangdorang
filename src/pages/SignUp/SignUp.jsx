@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import Grid from "@mui/material/Grid";
+import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // React Router v6에서는 useNavigate를 사용합니다.
 import logo1 from "../../assets/images/logo2.png";
+import Header from '../../components/Header';
 import {
   FormContainer,
   RoundedLogo1,
-  StyledLabel,
-  StyledInput,
-  StyledButton,
   SignUpSelect,
+  StyledButton,
+  StyledInput,
+  StyledLabel
 } from "../../styles/Main";
-import Grid from "@mui/material/Grid";
-import Header from "../../components/Header";
 
 const SignUp = () => {
   // 폼 데이터 스테이트
@@ -23,8 +24,7 @@ const SignUp = () => {
     user_description: "",
   });
 
-  // 예 아니오 버튼 클릭 감지
-  const [whatButton, setWhatButton] = useState("");
+  const navigate = useNavigate(); // useNavigate 훅을 사용하여 페이지 이동 함수를 가져옵니다.
 
   // 인풋 데이터 감지
   const handleChange = (e) => {
@@ -33,21 +33,56 @@ const SignUp = () => {
       ...formData,
       [name]: value,
     });
-    console.log(formData);
   };
 
-  // 제출 버튼 클릭 시 작동 함수
-  const navigate = useNavigate(); // useNavigate 훅을 사용하여 페이지 이동 함수를 가져옵니다.
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("제출된 데이터:", formData);
-    if (whatButton === "YES") {
-      navigate("/NextSignUp"); // 아니오 버튼을 클릭했을 때 / 페이지로 이동
-    } else {
-      navigate("/"); // 그 외의 경우에는 /NextSignUp 페이지로 이동
+  const YesClick = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_API}/user/create`,
+        null,
+        {
+          params: {
+            nickName: formData.user_nickname,
+            age: formData.user_age,
+            sex: formData.user_sex,
+            password: formData.user_password,
+            description: formData.user_description,
+            accountId: formData.user_id,
+          }
+        }
+      );
+      console.log(response.data)
+      navigate("/NextSignUp", {
+        state: { userId: response.data }
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
+
+  const NoClick = async () => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_API}/user/create`,
+        null,
+        {
+          params: {
+            nickName: formData.user_nickname,
+            age: formData.user_age,
+            sex: formData.user_sex,
+            password: formData.user_password,
+            description: formData.user_description,
+            accountId: formData.user_id,
+          }
+        }
+      );
+      console.log(response.data)
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   // 렌더링
   return (
@@ -56,7 +91,7 @@ const SignUp = () => {
       <FormContainer style={{ padding: "40px 0", height: "400px" }}>
         <RoundedLogo1 src={logo1} />
         <form
-          onSubmit={handleSubmit}
+          // onSubmit={handleSubmit}
           style={{
             display: "flex",
             flexDirection: "column",
@@ -188,13 +223,13 @@ const SignUp = () => {
               style={{ width: "120px", marginRight: "10px" }}
               backgroundColor="#f79b33"
               border="3px solid #75c13e"
-              onClick={() => setWhatButton("YES")}
+              onClick={YesClick}
             >
               예
             </StyledButton>
             <StyledButton
               type="submit"
-              onClick={() => navigate("/")}
+              onClick={NoClick}
               style={{ width: "120px" }}
               backgroundColor="#b97d38"
               border="3px solid #dd923d"

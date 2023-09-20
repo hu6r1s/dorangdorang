@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom'; // React Router v6에서는 useNavigate를 사용합니다.
-import { FormContainer, RoundedLogo1, StyledLabel, StyledInput, StyledButton } from '../../styles/Main'
 import logo2 from "assets/images/logo2.png";
-import Header from '../../components/Header'
+import axios from "axios";
+import { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom'; // React Router v6에서는 useNavigate를 사용합니다.
+import Header from '../../components/Header';
+import { FormContainer, RoundedLogo1, StyledButton, StyledInput, StyledLabel } from '../../styles/Main';
 
 const SignIn = () => {
   // 폼 데이터 스테이트
@@ -17,27 +18,40 @@ const SignIn = () => {
       ...formData,
       [name]: value,
     });
-    console.log(formData);
   };
 
   // 제출 버튼 클릭 시 작동 함수
   const navigate = useNavigate(); // useNavigate 훅을 사용하여 페이지 이동 함수를 가져옵니다.
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('제출된 데이터:', formData);
-    navigate('/Main'); // 이동할 경로를 지정합니다.
-  };
+  const login = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_API}/user/login`,
+        null,
+        {
+          params: {
+            accountId: formData.user_id,
+            password: formData.user_password,
+          }
+        }
+      );
+      console.log(response);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   // 렌더링
   return (
     <>
-    <Header/>
-    <div> 
-        <FormContainer style={{padding:'10px'}}>
+      <Header />
+      <div>
+        <FormContainer style={{ padding: '10px' }}>
           <RoundedLogo1 src={logo2} />
           {/* 로그인 폼 */}
-          <form onSubmit={handleSubmit}>
+          <form>
             {/* 아이디 */}
             <div style={{ marginBottom: "10px", marginTop: "10px" }}>
               <StyledLabel>아이디</StyledLabel>
@@ -63,21 +77,21 @@ const SignIn = () => {
               />
             </div>
             {/* 로그인 버튼 */}
-            <StyledButton type="submit" variant="contained">로그인</StyledButton>
+            <StyledButton type="submit" variant="contained" onClick={login}>로그인</StyledButton>
           </form>
           {/* 회원가입 버튼 */}
-          <Link to="/SignUp"> 
-          <StyledButton
-            variant="contained"
-            backgroundColor="#A4651B"
-            border="3px solid #dd923d"
-            style={{marginRight:'5px'}}
+          <Link to="/SignUp">
+            <StyledButton
+              variant="contained"
+              backgroundColor="#A4651B"
+              border="3px solid #dd923d"
+              style={{ marginRight: '5px' }}
             >
-            회원가입
-          </StyledButton>
-            </Link>
+              회원가입
+            </StyledButton>
+          </Link>
         </FormContainer>
-        </div>
+      </div>
     </>
   );
 };
