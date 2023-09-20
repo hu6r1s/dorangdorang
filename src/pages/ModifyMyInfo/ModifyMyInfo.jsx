@@ -98,6 +98,7 @@ const ModifyMyInfo = () => {
                 <br />
                 <ModifyMyInfoInput
                   name="user_age"
+                  type="number"
                   value={formData.user_age}
                   onChange={handleChange}
                   required
@@ -115,8 +116,8 @@ const ModifyMyInfo = () => {
                   onChange={handleChange}
                   required
                 >
-                  <option value="남자">남자</option>
-                  <option value="여자">여자</option>
+                  <option value="male">남자</option>
+                  <option value="female">여자</option>
                 </SignUpSelect>
               </div>
             </Grid>
