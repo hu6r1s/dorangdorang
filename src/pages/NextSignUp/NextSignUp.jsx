@@ -1,17 +1,21 @@
-import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom"; // React Router v6에서는 useNavigate를 사용합니다.
 import Grid from "@mui/material/Grid";
+import axios from "axios";
+import { useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom"; // React Router v6에서는 useNavigate를 사용합니다.
+import Header from '../../components/Header';
 import {
   FormContainer,
-  StyledLabel,
-  StyledInput,
   StyledButton,
+  StyledInput,
+  StyledLabel,
 } from "../../styles/Main";
-import Header from '../../components/Header'
-
 
 
 const NextSignUp = () => {
+  const navigate = useNavigate(); // useNavigate 훅을 사용하여 페이지 이동 함수를 가져옵니다.
+  const location = useLocation();
+  console.log(location)
+
   // 폼 데이터 스테이트
   const [formData, setFormData] = useState({
     farm_species: "",
@@ -19,8 +23,8 @@ const NextSignUp = () => {
     farm_want: "",
     farm_why: "",
     user_profileImage: "null",
-    farm_name:'',
-    farm_address:'',
+    farm_name: '',
+    farm_address: '',
   });
 
   // 인풋 데이터 감지
@@ -30,16 +34,38 @@ const NextSignUp = () => {
       ...formData,
       [name]: value,
     });
-    console.log(formData);
   };
 
-  // 제출 버튼 클릭 시 작동 함수
-  const navigate = useNavigate(); // useNavigate 훅을 사용하여 페이지 이동 함수를 가져옵니다.
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("제출된 데이터:", formData);
     navigate("/"); // 이동할 경로를 지정합니다.
+  };
+
+  const register = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_API}/farm/create`,
+        null,
+        {
+          params: {
+            name: formData.farm_name,
+            species: formData.farm_species,
+            want: formData.farm_want,
+            hobit: formData.user_hobit,
+            why: formData.farm_why,
+            address: formData.farm_address,
+            userId: location.state.userId,
+          }
+        }
+      );
+      console.log(response);
+      navigate("/SignIn");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const fileInputRef = useRef(null); // 파일 입력란의 ref 생성
@@ -59,10 +85,10 @@ const NextSignUp = () => {
   // 렌더링
   return (
     <>
-  <Header/>
-      <FormContainer style={{padding:'25px 0', height:'400px'}}>
+      <Header />
+      <FormContainer style={{ padding: '25px 0', height: '400px' }}>
         <form
-          onSubmit={handleSubmit}
+          // onSubmit={handleSubmit}
           style={{
             display: "flex",
             flexDirection: "column",
@@ -73,12 +99,12 @@ const NextSignUp = () => {
             container
             rowSpacing={1.5}
             justifyContent="center"
-            style={{width:'300px'}}
+            style={{ width: '300px' }}
           >
             {/* 재배종목 */}
             <Grid item xs={6} style={{ paddingRight: "15px" }}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>재배종목</StyledLabel>
+                <StyledLabel style={{ fontSize: '15px' }}>재배종목</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -94,7 +120,7 @@ const NextSignUp = () => {
             {/* 취미 */}
             <Grid item xs={6} style={{ paddingLeft: "15px" }}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>취미</StyledLabel>
+                <StyledLabel style={{ fontSize: '15px' }}>취미</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -110,7 +136,7 @@ const NextSignUp = () => {
             {/* 이런 사람들과 친해지고 싶어요 */}
             <Grid item xs={12}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>이런 사람들과 친해지고 싶어요</StyledLabel>
+                <StyledLabel style={{ fontSize: '15px' }}>이런 사람들과 친해지고 싶어요</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -126,7 +152,7 @@ const NextSignUp = () => {
             {/* 귀농한 이유 */}
             <Grid item xs={12}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>귀농한 이유</StyledLabel>
+                <StyledLabel style={{ fontSize: '15px' }}>귀농한 이유</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -142,7 +168,7 @@ const NextSignUp = () => {
             {/* 농장 이름 */}
             <Grid item xs={6} style={{ paddingRight: "15px" }}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>농장 이름</StyledLabel>
+                <StyledLabel style={{ fontSize: '15px' }}>농장 이름</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -158,7 +184,7 @@ const NextSignUp = () => {
             {/* 농장 주소 */}
             <Grid item xs={6} style={{ paddingLeft: "15px" }}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>농장 주소</StyledLabel>
+                <StyledLabel style={{ fontSize: '15px' }}>농장 주소</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -173,8 +199,8 @@ const NextSignUp = () => {
             </Grid>
           </Grid>
           {/* 농장 사진 */}
-          <div style={{ marginBottom: "20px", marginRight:'80px'}}>
-            <StyledLabel style={{fontSize:'15px'}}>농장 사진</StyledLabel>
+          <div style={{ marginBottom: "20px", marginRight: '80px' }}>
+            <StyledLabel style={{ fontSize: '15px' }}>농장 사진</StyledLabel>
             <div>
               <input
                 type="file"
@@ -190,7 +216,7 @@ const NextSignUp = () => {
                   width: "80px",
                   height: "40px",
                   fontSize: "15px",
-                  margin:'5px 10px 0px 0px'
+                  margin: '5px 10px 0px 0px'
                 }}
               >
                 업로드
@@ -209,15 +235,16 @@ const NextSignUp = () => {
           {/* 회원가입 버튼 */}
           <StyledButton
             type="submit"
-            style={{ width: "350px", fontSize:'25px'}}
+            style={{ width: "350px", fontSize: '25px' }}
             backgroundColor="#A4651B"
             border="3px solid #dd923d"
+            onClick={register}
           >
             회원가입
           </StyledButton>
         </form>
       </FormContainer>
-      </>
+    </>
   );
 };
 export default NextSignUp;

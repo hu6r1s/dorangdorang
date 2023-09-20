@@ -426,8 +426,8 @@ export const DetailedPostCommentContainer = styled.div`
 
 // Writing //
 export const WritingContainer = styled(DetailedPostContainer)`
-height: 600px;
-margin-top:50px;
+  height: 600px;
+  margin-top:50px;
 `;
 
 export const WritingTitleInput = styled.input`

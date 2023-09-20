@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import Grid from "@mui/material/Grid";
+import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // React Router v6에서는 useNavigate를 사용합니다.
 import logo1 from "../../assets/images/logo2.png";
+import Header from '../../components/Header';
 import {
   FormContainer,
   RoundedLogo1,
-  StyledLabel,
-  StyledInput,
   StyledButton,
-  DuplicateCheckButton
+  StyledInput,
+  StyledLabel
 } from "../../styles/Main";
-import Grid from "@mui/material/Grid";
-import Header from '../../components/Header'
-
 
 const SignUp = () => {
   // 폼 데이터 스테이트
@@ -34,7 +33,6 @@ const SignUp = () => {
       ...formData,
       [name]: value,
     });
-    console.log(formData);
   };
 
   // 제출 버튼 클릭 시 작동 함수
@@ -43,21 +41,70 @@ const SignUp = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("제출된 데이터:", formData);
-    if (whatButton==='YES') {
+    if (whatButton === 'YES') {
       navigate("/NextSignUp"); // 아니오 버튼을 클릭했을 때 / 페이지로 이동
     } else {
       navigate("/"); // 그 외의 경우에는 /NextSignUp 페이지로 이동
     }
   };
 
+  const YesClick = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_API}/user/create`,
+        null,
+        {
+          params: {
+            nickName: formData.user_nickname,
+            age: formData.user_age,
+            sex: formData.user_sex,
+            password: formData.user_password,
+            description: formData.user_description,
+            accountId: formData.user_id,
+          }
+        }
+      );
+      console.log(response.data)
+      navigate("/NextSignUp", {
+        state: { userId: response.data }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const NoClick = async () => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_API}/user/create`,
+        null,
+        {
+          params: {
+            nickName: formData.user_nickname,
+            age: formData.user_age,
+            sex: formData.user_sex,
+            password: formData.user_password,
+            description: formData.user_description,
+            accountId: formData.user_id,
+          }
+        }
+      );
+      console.log(response.data)
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   // 렌더링
   return (
     <div>
-      <Header/>
-      <FormContainer style={{padding:'40px 0', height:'400px'}}>
+      <Header />
+      <FormContainer style={{ padding: '40px 0', height: '400px' }}>
         <RoundedLogo1 src={logo1} />
         <form
-          onSubmit={handleSubmit}
+          // onSubmit={handleSubmit}
           style={{
             display: "flex",
             flexDirection: "column",
@@ -69,12 +116,12 @@ const SignUp = () => {
             rowSpacing={0.5}
             columnSpacing={{ xs: 3 }}
             justifyContent="center"
-            style={{ width:'300px' }}
+            style={{ width: '300px' }}
           >
             {/* 닉네임 */}
             <Grid item xs={4}>
-              <div style={{position:'relative'}}>
-                <StyledLabel style={{fontSize:'15px'}}>닉네임</StyledLabel>
+              <div style={{ position: 'relative' }}>
+                <StyledLabel style={{ fontSize: '15px' }}>닉네임</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -90,7 +137,7 @@ const SignUp = () => {
             {/* 나이 */}
             <Grid item xs={4}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>나이</StyledLabel>
+                <StyledLabel style={{ fontSize: '15px' }}>나이</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -106,7 +153,7 @@ const SignUp = () => {
             {/* 성별 */}
             <Grid item xs={4}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>성별</StyledLabel>
+                <StyledLabel style={{ fontSize: '15px' }}>성별</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -121,8 +168,8 @@ const SignUp = () => {
             </Grid>
             {/* 아이디 */}
             <Grid item xs={12}>
-              <div style={{position:'relative'}}>
-                <StyledLabel style={{fontSize:'15px'}}>아이디</StyledLabel>
+              <div style={{ position: 'relative' }}>
+                <StyledLabel style={{ fontSize: '15px' }}>아이디</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -139,7 +186,7 @@ const SignUp = () => {
             {/* 비밀번호 */}
             <Grid item xs={12}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>비밀번호</StyledLabel>
+                <StyledLabel style={{ fontSize: '15px' }}>비밀번호</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -156,7 +203,7 @@ const SignUp = () => {
             {/* 한 줄 자기소개 */}
             <Grid item xs={12}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>한 줄 자기소개</StyledLabel>
+                <StyledLabel style={{ fontSize: '15px' }}>한 줄 자기소개</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -171,7 +218,7 @@ const SignUp = () => {
             </Grid>
           </Grid>
           <div
-            style={{ fontSize: "20px", fontWeight: "bold", color: "#A4651B", margin:'50px 0px 5px 0px' }}
+            style={{ fontSize: "20px", fontWeight: "bold", color: "#A4651B", margin: '50px 0px 5px 0px' }}
           >
             현재 농사 중 이신가요?
           </div>
@@ -179,16 +226,16 @@ const SignUp = () => {
           <div style={{ display: "flex" }}>
             <StyledButton
               type="submit"
-              style={{ width: "120px", marginRight:'10px' }}
+              style={{ width: "120px", marginRight: '10px' }}
               backgroundColor="#f79b33"
               border="3px solid #75c13e"
-              onClick={()=>setWhatButton('YES')}
+              onClick={YesClick}
             >
               예
             </StyledButton>
             <StyledButton
               type="submit"
-              onClick={() => navigate("/")}
+              onClick={NoClick}
               style={{ width: "120px" }}
               backgroundColor="#b97d38"
               border="3px solid #dd923d"
