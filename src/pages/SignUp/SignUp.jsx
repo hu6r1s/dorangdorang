@@ -7,11 +7,10 @@ import {
   StyledLabel,
   StyledInput,
   StyledButton,
-  DuplicateCheckButton
+  SignUpSelect,
 } from "../../styles/Main";
 import Grid from "@mui/material/Grid";
-import Header from '../../components/Header'
-
+import Header from "../../components/Header";
 
 const SignUp = () => {
   // 폼 데이터 스테이트
@@ -25,7 +24,7 @@ const SignUp = () => {
   });
 
   // 예 아니오 버튼 클릭 감지
-  const [whatButton, setWhatButton] = useState('');
+  const [whatButton, setWhatButton] = useState("");
 
   // 인풋 데이터 감지
   const handleChange = (e) => {
@@ -43,7 +42,7 @@ const SignUp = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("제출된 데이터:", formData);
-    if (whatButton==='YES') {
+    if (whatButton === "YES") {
       navigate("/NextSignUp"); // 아니오 버튼을 클릭했을 때 / 페이지로 이동
     } else {
       navigate("/"); // 그 외의 경우에는 /NextSignUp 페이지로 이동
@@ -53,8 +52,8 @@ const SignUp = () => {
   // 렌더링
   return (
     <div>
-      <Header/>
-      <FormContainer style={{padding:'40px 0', height:'400px'}}>
+      <Header />
+      <FormContainer style={{ padding: "40px 0", height: "400px" }}>
         <RoundedLogo1 src={logo1} />
         <form
           onSubmit={handleSubmit}
@@ -69,12 +68,12 @@ const SignUp = () => {
             rowSpacing={0.5}
             columnSpacing={{ xs: 3 }}
             justifyContent="center"
-            style={{ width:'300px' }}
+            style={{ width: "300px" }}
           >
             {/* 닉네임 */}
             <Grid item xs={4}>
-              <div style={{position:'relative'}}>
-                <StyledLabel style={{fontSize:'15px'}}>닉네임</StyledLabel>
+              <div style={{ position: "relative" }}>
+                <StyledLabel style={{ fontSize: "15px" }}>닉네임</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -90,7 +89,7 @@ const SignUp = () => {
             {/* 나이 */}
             <Grid item xs={4}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>나이</StyledLabel>
+                <StyledLabel style={{ fontSize: "15px" }}>나이</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -106,23 +105,23 @@ const SignUp = () => {
             {/* 성별 */}
             <Grid item xs={4}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>성별</StyledLabel>
+                <StyledLabel style={{ fontSize: "15px" }}>성별</StyledLabel>
                 <br />
-                <StyledInput
-                  width={"100%"}
-                  height={"20px"}
-                  fontSize={"15px"}
+                <SignUpSelect
                   name="user_sex"
                   value={formData.user_sex}
                   onChange={handleChange}
                   required
-                />
+                >
+                  <option value="남자">남자</option>
+                  <option value="여자">여자</option>
+                </SignUpSelect>
               </div>
             </Grid>
             {/* 아이디 */}
             <Grid item xs={12}>
-              <div style={{position:'relative'}}>
-                <StyledLabel style={{fontSize:'15px'}}>아이디</StyledLabel>
+              <div style={{ position: "relative" }}>
+                <StyledLabel style={{ fontSize: "15px" }}>아이디</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -139,7 +138,7 @@ const SignUp = () => {
             {/* 비밀번호 */}
             <Grid item xs={12}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>비밀번호</StyledLabel>
+                <StyledLabel style={{ fontSize: "15px" }}>비밀번호</StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -156,7 +155,9 @@ const SignUp = () => {
             {/* 한 줄 자기소개 */}
             <Grid item xs={12}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>한 줄 자기소개</StyledLabel>
+                <StyledLabel style={{ fontSize: "15px" }}>
+                  한 줄 자기소개
+                </StyledLabel>
                 <br />
                 <StyledInput
                   width={"100%"}
@@ -171,7 +172,12 @@ const SignUp = () => {
             </Grid>
           </Grid>
           <div
-            style={{ fontSize: "20px", fontWeight: "bold", color: "#A4651B", margin:'50px 0px 5px 0px' }}
+            style={{
+              fontSize: "20px",
+              fontWeight: "bold",
+              color: "#A4651B",
+              margin: "50px 0px 5px 0px",
+            }}
           >
             현재 농사 중 이신가요?
           </div>
@@ -179,10 +185,10 @@ const SignUp = () => {
           <div style={{ display: "flex" }}>
             <StyledButton
               type="submit"
-              style={{ width: "120px", marginRight:'10px' }}
+              style={{ width: "120px", marginRight: "10px" }}
               backgroundColor="#f79b33"
               border="3px solid #75c13e"
-              onClick={()=>setWhatButton('YES')}
+              onClick={() => setWhatButton("YES")}
             >
               예
             </StyledButton>

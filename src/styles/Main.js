@@ -138,6 +138,15 @@ export const DuplicateCheckButton = styled.button`
   background-color: #c3e79f;
 `;
 
+export const SignUpSelect = styled.select`
+                  width:100%;
+                  height:20px;
+                  margin-top:5px;
+                  font-size:15px;
+                  border-radius:5px;
+                  border:2px solid black;
+`
+
 // MyPage Page About //
 export const StyledAvatar = styled.img`
   width: 80px;
@@ -190,6 +199,7 @@ export const MyPageModifyButton = styled.div`
   font-size: 15px;
   background-color: rgba(255, 0, 0, 0);
 `;
+
 
 // BenefitsBoard Page About //
 export const BenefitsBoardContainer = styled.div`
@@ -501,6 +511,16 @@ export const ModifyMyInfoContainer = styled(SmallContainer)`
   height:350px;
   padding:20px;
   margin-top:120px;
+`
+
+export const ModifyMyInfoLabel = styled(StyledLabel)`
+  font-size:15px;
+`
+
+export const ModifyMyInfoInput = styled(StyledInput)`
+  width:100%;
+  height:20px;
+  font-size:15px;
 `
 
 export const ModifySelfIntroContainer = styled(ModifyMyInfoContainer)`
