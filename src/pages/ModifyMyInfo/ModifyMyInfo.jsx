@@ -8,6 +8,9 @@ import {
   StyledButton,
   ModifyMyInfoContainer,
   FlexBox,
+  SignUpSelect,
+  ModifyMyInfoLabel,
+  ModifyMyInfoInput,
 } from "../../styles/Main";
 import Header from "components/Header";
 
@@ -58,7 +61,7 @@ const ModifyMyInfo = () => {
   // 렌더링
   return (
     <>
-    <Header/>
+      <Header />
       <ModifyMyInfoContainer>
         <form
           onSubmit={handleSubmit}
@@ -73,17 +76,14 @@ const ModifyMyInfo = () => {
             rowSpacing={1}
             columnSpacing={3}
             justifyContent="center"
-            style={{ width:'400px' }}
+            style={{ width: "400px" }}
           >
             {/* 닉네임 */}
             <Grid item xs={6}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>닉네임</StyledLabel>
+                <ModifyMyInfoLabel>닉네임</ModifyMyInfoLabel>
                 <br />
-                <StyledInput
-                  width={"100%"}
-                  height={"20px"}
-                  fontSize={"25px"}
+                <ModifyMyInfoInput
                   name="user_nickname"
                   value={formData.user_nickname}
                   onChange={handleChange}
@@ -94,12 +94,9 @@ const ModifyMyInfo = () => {
             {/* 나이 */}
             <Grid item xs={3}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>나이</StyledLabel>
+                <ModifyMyInfoLabel>나이</ModifyMyInfoLabel>
                 <br />
-                <StyledInput
-                  width={"100%"}
-                  height={"20px"}
-                  fontSize={"25px"}
+                <ModifyMyInfoInput
                   name="user_age"
                   value={formData.user_age}
                   onChange={handleChange}
@@ -110,28 +107,25 @@ const ModifyMyInfo = () => {
             {/* 성별 */}
             <Grid item xs={3}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>성별</StyledLabel>
+                <ModifyMyInfoLabel>성별</ModifyMyInfoLabel>
                 <br />
-                <StyledInput
-                  width={"100%"}
-                  height={"20px"}
-                  fontSize={"25px"}
+                <SignUpSelect
                   name="user_sex"
                   value={formData.user_sex}
                   onChange={handleChange}
                   required
-                />
+                >
+                  <option value="남자">남자</option>
+                  <option value="여자">여자</option>
+                </SignUpSelect>
               </div>
             </Grid>
             {/* 아이디 */}
             <Grid item xs={12}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>아이디</StyledLabel>
+                <ModifyMyInfoLabel>아이디</ModifyMyInfoLabel>
                 <br />
-                <StyledInput
-                  width={"100%"}
-                  height={"20px"}
-                  fontSize={"25px"}
+                <ModifyMyInfoInput
                   name="user_id"
                   value={formData.user_id}
                   onChange={handleChange}
@@ -142,12 +136,9 @@ const ModifyMyInfo = () => {
             {/* 비밀번호 */}
             <Grid item xs={12}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>비밀번호</StyledLabel>
+                <ModifyMyInfoLabel>비밀번호</ModifyMyInfoLabel>
                 <br />
-                <StyledInput
-                  width={"100%"}
-                  height={"20px"}
-                  fontSize={"25px"}
+                <ModifyMyInfoInput
                   name="user_password"
                   value={formData.user_password}
                   onChange={handleChange}
@@ -158,12 +149,9 @@ const ModifyMyInfo = () => {
             {/* 한 줄 자기소개 */}
             <Grid item xs={12}>
               <div>
-                <StyledLabel style={{fontSize:'15px'}}>한 줄 자기소개</StyledLabel>
+                <ModifyMyInfoLabel>한 줄 자기소개</ModifyMyInfoLabel>
                 <br />
-                <StyledInput
-                  width={"100%"}
-                  height={"20px"}
-                  fontSize={"25px"}
+                <ModifyMyInfoInput
                   name="user_description"
                   value={formData.user_description}
                   onChange={handleChange}
@@ -174,7 +162,7 @@ const ModifyMyInfo = () => {
           </Grid>
           {/* 프로필 사진 */}
           <div style={{ marginBottom: "5px", marginLeft: "-150px" }}>
-            <StyledLabel style={{fontSize:'15px'}}>프로필 사진</StyledLabel>
+            <ModifyMyInfoLabel>프로필 사진</ModifyMyInfoLabel>
             <FlexBox>
               <input
                 type="file"
@@ -190,16 +178,16 @@ const ModifyMyInfo = () => {
                   width: "60px",
                   height: "30px",
                   fontSize: "12px",
-                  fontWeight:'bold',
+                  fontWeight: "bold",
                   marginLeft: "0px",
-                  marginRight:'5px',
+                  marginRight: "5px",
                 }}
               >
                 업로드
               </StyledButton>
               <div
                 style={{
-                  width:'150px',
+                  width: "150px",
                   fontSize: "12px",
                   fontWeight: "bold",
                   color: "#A4651B",
@@ -220,7 +208,7 @@ const ModifyMyInfo = () => {
           </StyledButton>
         </form>
       </ModifyMyInfoContainer>
-      </>
+    </>
   );
 };
 export default ModifyMyInfo;
