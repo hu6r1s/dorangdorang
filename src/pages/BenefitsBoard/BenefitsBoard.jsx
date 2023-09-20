@@ -1,3 +1,4 @@
+import Header from "components/Header";
 import React from "react";
 import {
   BenefitsBoardButton,
@@ -12,6 +13,7 @@ import {
 const BenefitsBoard = () => {
   return (
     <>
+      <Header />
       <BenefitsBoardContainer>
         <BenefitsBoardSubtitle>농림축산 식품부</BenefitsBoardSubtitle>
         <BenefitsBoardTitle>청년농업인 영농정착지원</BenefitsBoardTitle>
