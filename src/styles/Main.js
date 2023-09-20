@@ -124,28 +124,14 @@ export const StyledButton = styled(Button)(
   })
 );
 
-// SignUp Page  About //
-export const DuplicateCheckButton = styled.button`
-  position:absolute;
-  top: 27px;
-  right: -8px;
-  width: 50px;
-  height: 25px;
-  border-radius: 10px;
-  font-size: 8px;
-  font-weight: bold;
-  color: #a4651b;
-  background-color: #c3e79f;
-`;
-
 export const SignUpSelect = styled.select`
-                  width:100%;
-                  height:20px;
-                  margin-top:5px;
-                  font-size:15px;
-                  border-radius:5px;
-                  border:2px solid black;
-`
+  width:100%;
+  height:20px;
+  margin-top:5px;
+  font-size:15px;
+  border-radius:5px;
+  border:2px solid black;
+`;
 
 // MyPage Page About //
 export const StyledAvatar = styled.img`
@@ -407,22 +393,27 @@ export const PublisherProfile = styled.img`
   margin-right: 10px;
   border-radius: 100%;
 `;
+
 export const PublisherNickName = styled.div`
   font-size: 20px;
 `;
+
 export const PublisherTimeNCategory = styled.div`
   font-size: 15px;
   color: #5f5f5f;
 `;
+
 export const AnothersProfile = styled.img`
   margin-right: 10px;
   width: 30px;
   height: 30px;
   border-radius: 100%;
 `;
+
 export const AnothersNickName = styled.div`
   font-size: 12px;
 `;
+
 export const AnothersTime = styled.div`
   font-size: 10px;
   color: #5f5f5f;
@@ -442,6 +433,7 @@ export const DetailedPostTitle = styled.div`
 export const DetailedPostContents = styled.div`
   font-size: 20px;
 `;
+
 export const DetailedPostInput = styled.input`
   width: 400px;
   height: 50px;
@@ -449,6 +441,7 @@ export const DetailedPostInput = styled.input`
   margin-right: 10px;
   font-size:20px;
 `;
+
 export const DetailedPostSendButton = styled.button`
   width: 150px;
   height: 50px;
@@ -481,7 +474,7 @@ export const DetailedPostCommentContainer = styled.div`
 export const WritingContainer = styled(DetailedPostContainer)`
 height: 600px;
 margin-top:50px;
-`
+`;
 
 export const WritingTitleInput = styled.input`
   width:400px;
@@ -490,28 +483,30 @@ export const WritingTitleInput = styled.input`
   font-weight:bold;
   border: 1px solid gray;
   border-radius:5px;
-`
+`;
+
 export const WritingTextArea = styled.textarea`
 width:550px;
 height:400px;
 font-size:20px;
 margin: 5px 0px 20px 0px;
+`;
 
-`
 export const WritingCategory = styled.input`
-`
+`;
+
 export const WritingSubmitBtton = styled(DetailedPostAttendButton)`
   width:150px;
   height: 50px;
   margin-left:200px;
-`
+`;
 
 export const ModifyMyInfoContainer = styled(SmallContainer)`
   width:450px;
   height:350px;
   padding:20px;
   margin-top:120px;
-`
+`;
 
 export const ModifyMyInfoLabel = styled(StyledLabel)`
   font-size:15px;
@@ -527,13 +522,14 @@ export const ModifySelfIntroContainer = styled(ModifyMyInfoContainer)`
   width:450px;
   height:350px;
   padding:20px;
-`
+`;
 
 export const ModifySelfIntroLabel = styled(StyledLabel)`
 font-size:15px;
-`
+`;
+
 export const ModifySelfIntroInput = styled(StyledInput)`
 width:100%;
 height: 20px;
 font-size:15px;
-`
+`;
