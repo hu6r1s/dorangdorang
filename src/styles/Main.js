@@ -138,6 +138,15 @@ export const DuplicateCheckButton = styled.button`
   background-color: #c3e79f;
 `;
 
+export const SignUpSelect = styled.select`
+                  width:100%;
+                  height:20px;
+                  margin-top:5px;
+                  font-size:15px;
+                  border-radius:5px;
+                  border:2px solid black;
+`
+
 // MyPage Page About //
 export const StyledAvatar = styled.img`
   width: 80px;
@@ -191,30 +200,67 @@ export const MyPageModifyButton = styled.div`
   background-color: rgba(255, 0, 0, 0);
 `;
 
+
 // BenefitsBoard Page About //
+export const BenefitsBoardContainer = styled.div`
+  display: flex;
+  flex-direction : column;
+  align-items: start;
+  padding: 50px;
+  position: relative;
+  width: 600px;
+  height: 800px;
+  background-color: #f7f6eb;
+  border: 3px solid #8f6b42;
+  border-radius: 40px;
+  margin: 0 auto;
+`
+
+
 export const BenefitsBoardTitle = styled.div`
-  font-size:40px;
+  font-size:30px;
   font-weight:bold;
   margin-bottom:10px;
 `;
 
 export const BenefitsBoardSubtitle = styled.div`
-  font-size:25px;
+  font-size:20px;
   font-weight:bold;
   color:#6A6969;
   margin-bottom:5px;
 `;
 
 export const BenefitsBoardCategory = styled.div`
-  font-size:35px;
+  font-size:25px;
   font-weight:bold;
   margin-bottom:5px;
 `;
 
 export const BenefitsBoardNomalText = styled.div`
-  font-size:25px;
+  font-size:20px;
   margin-bottom:50px;
 `;
+
+export const BenefitsBoardButton = styled.button`
+    width: 500px;
+    height: 50px;
+    margin: 0px auto;
+    background-color:#A4651B;
+    border:3px solid #dd923d;
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    border-radius:10px;
+    &:hover{
+      cursor:pointer;
+      opacity:0.9;
+    }
+`
+
+export const BenefitsBoardHorizon = styled.hr`
+    width:500px;
+    border: 2px solid #7BB144;
+`
 
 export const BoardContainer = styled.div`
   margin-right: 100px;
@@ -327,7 +373,7 @@ export const DetailedPostContainer = styled(SmallContainer)`
 export function DetailedPostPublisher({ nickname, time, category }) {
   return (
     <>
-      <div style={{marginRight:'180px'}}>
+      <div style={{ marginRight: '180px' }}>
         <PublisherNickName>{nickname}</PublisherNickName>
         <FlexBox>
           <PublisherTimeNCategory>{time}</PublisherTimeNCategory>
@@ -465,6 +511,16 @@ export const ModifyMyInfoContainer = styled(SmallContainer)`
   height:350px;
   padding:20px;
   margin-top:120px;
+`
+
+export const ModifyMyInfoLabel = styled(StyledLabel)`
+  font-size:15px;
+`
+
+export const ModifyMyInfoInput = styled(StyledInput)`
+  width:100%;
+  height:20px;
+  font-size:15px;
 `
 
 export const ModifySelfIntroContainer = styled(ModifyMyInfoContainer)`
