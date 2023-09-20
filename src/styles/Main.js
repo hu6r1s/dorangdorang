@@ -165,20 +165,20 @@ export const FlexBox = styled.div`
 `;
 
 export const MyPageTitle = styled.div`
-  font-size:30px;
+  font-size:25px;
   font-weight:bold;
-  margin-left:50px;
+  margin-left:30px;
   margin-bottom:10px;
 `;
 
 export const MyPageSubtitle = styled.div`
-  font-size:25px;
+  font-size:20px;
   font-weight:bold;
   margin-bottom:5px;
 `;
 
 export const MyPageNomalText = styled.div`
-  font-size:20px;
+  font-size:15px;
 `;
 
 export const MyPageModifyButton = styled.div`
