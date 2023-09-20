@@ -3,14 +3,14 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // React Router v6에서는 useNavigate를 사용합니다.
 import logo1 from "../../assets/images/logo2.png";
-import Header from '../../components/Header';
+import Header from "../../components/Header";
 import {
   FormContainer,
   RoundedLogo1,
   SignUpSelect,
   StyledButton,
   StyledInput,
-  StyledLabel
+  StyledLabel,
 } from "../../styles/Main";
 
 const SignUp = () => {
@@ -49,12 +49,12 @@ const SignUp = () => {
             password: formData.user_password,
             description: formData.user_description,
             accountId: formData.user_id,
-          }
+          },
         }
       );
-      console.log(response.data)
+      console.log(response.data);
       navigate("/NextSignUp", {
-        state: { userId: response.data }
+        state: { userId: response.data },
       });
     } catch (error) {
       console.log(error);
@@ -74,15 +74,15 @@ const SignUp = () => {
             password: formData.user_password,
             description: formData.user_description,
             accountId: formData.user_id,
-          }
+          },
         }
       );
-      console.log(response.data)
+      console.log(response.data);
       navigate("/");
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   // 렌더링
   return (
@@ -130,6 +130,7 @@ const SignUp = () => {
                   width={"100%"}
                   height={"20px"}
                   fontSize={"15px"}
+                  type="number"
                   name="user_age"
                   value={formData.user_age}
                   onChange={handleChange}
@@ -148,8 +149,8 @@ const SignUp = () => {
                   onChange={handleChange}
                   required
                 >
-                  <option value="남자">남자</option>
-                  <option value="여자">여자</option>
+                  <option value="male">남자</option>
+                  <option value="female">여자</option>
                 </SignUpSelect>
               </div>
             </Grid>
