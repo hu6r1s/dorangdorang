@@ -13,7 +13,7 @@ const Board = ({ type }) => {
   const [events, setEvents] = useState([]);
   const [dorandoran, setDorandoran] = useState([]);
   const [benefits, setBenefits] = useState([]);
-  const [nickname, setNickname] = useState("");
+  const [nickname, setNickname] = useState([]);
   // const [currentPage, setCurrentPage] = useState(1);
 
   // const indexOfLastItem = currentPage * 10;
@@ -29,59 +29,60 @@ const Board = ({ type }) => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get(
+        const eventsResponse = await axios.get(
           `${process.env.REACT_APP_SERVER_API}/event/findAllEvents`
         );
-        setEvents(response.data);
-        console.log(events);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+        const sortedEvents = eventsResponse.data.sort((a, b) =>
+          new Date(b.created) - new Date(a.created)
+        );
+        setEvents(sortedEvents);
 
-    fetchEvents();
-  }, []);
-
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const response = await axios.get(
+        const dorandoranResponse = await axios.get(
           `${process.env.REACT_APP_SERVER_API}/dorandoran/findAllDoranDornas`
         );
-        setDorandoran(response.data);
+        const sortedDoranDoran = dorandoranResponse.data.sort((a, b) =>
+          new Date(b.created) - new Date(a.created)
+        );
+        setDorandoran(sortedDoranDoran);
 
-        await axios
-          .get(`${process.env.REACT_APP_SERVER_API}/user/findUserById`, null, {
-            params: {
-              id: response.data.userId,
-            },
-          })
-          .then((data) => {
-            setNickname(data.nickname);
-          });
-        console.log(dorandoran);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchEvents();
-  }, []);
-
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const response = await axios.get(
+        const benefitsResponse = await axios.get(
           `${process.env.REACT_APP_SERVER_API}/benefit/findAllBenefits`
         );
-        setBenefits(response.data);
-        console.log(benefits);
+        const sortedBenefit = benefitsResponse.data.sort((a, b) =>
+          new Date(b.created) - new Date(a.created)
+        );
+        setBenefits(sortedBenefit);
+
+        const userIds = sortedDoranDoran.map((doran) => doran.userId);
+
+        const userResponses = await Promise.all(
+          userIds.map((userId) =>
+            axios.get(
+              `${process.env.REACT_APP_SERVER_API}/user/findUserById`,
+              {
+                params: {
+                  id: userId,
+                },
+              }
+            )
+          )
+        );
+
+        const nicknames = userResponses.map((response) => response.data.nickname);
+
+        setNickname(nicknames);
       } catch (error) {
         console.error(error);
       }
     };
 
     fetchEvents();
+
+    const intervalId = setInterval(fetchEvents, 30000); // 60초마다 데이터 요청
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
 
   const getRelativeTime = (eventTime) => {
@@ -99,6 +100,12 @@ const Board = ({ type }) => {
     }
   };
 
+  const saechamAndPoomEvents = events.filter((event) => {
+    const timeDifference = Date.now() - new Date(event.created).getTime();
+    const minutesDifference = Math.floor(timeDifference / (1000 * 60));
+    return minutesDifference <= 30;
+  });
+
   return (
     <>
       {type === "saecham" && (
@@ -106,7 +113,7 @@ const Board = ({ type }) => {
           <Title id="saecham">새참 먹자 & 품앗이</Title>
           <StyledTable>
             <tbody>
-              {events.map((event) => (
+              {saechamAndPoomEvents.map((event) => (
                 <tr key={event.id}>
                   <TableCell>
                     <UpT>Up</UpT>
@@ -137,11 +144,11 @@ const Board = ({ type }) => {
               </tr>
             </thead>
             <tbody>
-              {dorandoran.map((doran) => (
+              {dorandoran && dorandoran.map((doran, index) => (
                 <tr key={doran.id}>
-                  <TableCell>{doran.id + 1}</TableCell>
+                  <TableCell>{doran.id}</TableCell>
                   <TableCell>{doran.title}</TableCell>
-                  <TableCell>{nickname}</TableCell>
+                  <TableCell>{nickname[index]}</TableCell>
                   <TableCell>{getRelativeTime(doran.created)}</TableCell>
                 </tr>
               ))}
@@ -174,7 +181,7 @@ const Board = ({ type }) => {
               </tr>
             </thead>
             <tbody>
-              {benefits.map((benefit) => (
+              {benefits && benefits.map((benefit) => (
                 <tr key={benefit.id}>
                   <TableCell>{benefit.id + 1}</TableCell>
                   <TableCell>{benefit.title}</TableCell>
