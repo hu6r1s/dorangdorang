@@ -12,7 +12,7 @@ const Nav = () => {
       <NavItem onClick={() => navigate("/#gomin")}>고민 토론</NavItem>
       <NavItem onClick={() => navigate("/#jiwon")}>지원 제도</NavItem>
       <NavItem onClick={() => navigate("/map")}>농장 지도</NavItem>
-      <NavItem>글 쓰기</NavItem>
+      <NavItem onClick={() => navigate("/Writing")}>글 쓰기</NavItem>
     </NavContainer>
   );
 };

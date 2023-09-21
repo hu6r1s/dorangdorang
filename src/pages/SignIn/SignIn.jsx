@@ -2,6 +2,8 @@ import logo2 from "assets/images/logo2.png";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom'; // React Router v6에서는 useNavigate를 사용합니다.
+import { useRecoilState } from "recoil";
+import { userState } from "states/GlobalState";
 import Header from '../../components/Header';
 import { FormContainer, RoundedLogo1, StyledButton, StyledInput, StyledLabel } from '../../styles/Main';
 
@@ -11,6 +13,8 @@ const SignIn = () => {
     user_id: "",
     user_password: "",
   });
+
+  const [userId, setUserId] = useRecoilState(userState);
   // 인풋 데이터 감지
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,7 +41,10 @@ const SignIn = () => {
         }
       );
       console.log(response);
-      navigate("/");
+      if (typeof response.data === "number") {
+        setUserId(response.data);
+        navigate("/");
+      }
     } catch (error) {
       console.log(error);
     }

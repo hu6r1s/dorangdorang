@@ -1,9 +1,12 @@
 import Logo from "assets/images/logo.png";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { userState } from "states/GlobalState";
 import { HeaderContainer, LoginButton, LogoImage, MenuContainer, MenuItem } from "styles/Main";
 
 const Header = ({ page }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [userId, setUserId] = useRecoilState(userState);
   return (
     <HeaderContainer>
       <LogoImage
@@ -20,7 +23,17 @@ const Header = ({ page }) => {
           </>
         )}
       </MenuContainer>
-      <LoginButton onClick={() => { navigate("/SignIn") }}>로그인</LoginButton>
+      {userId === undefined ? (
+        <LoginButton onClick={() => {
+          console.log(userId)
+          navigate("/SignIn")
+        }}>로그인</LoginButton>
+      ) : (
+        <LoginButton onClick={() => {
+          setUserId(undefined);
+          navigate("/");
+        }}>로그아웃</LoginButton>
+      )}
     </HeaderContainer>
   );
 };
