@@ -6,13 +6,14 @@ import {
   TableCell,
   TableHeader,
   Title,
-  UpT
+  UpT,
 } from "styles/Main";
 
 const Board = ({ type }) => {
   const [events, setEvents] = useState([]);
   const [dorandoran, setDorandoran] = useState([]);
   const [benefits, setBenefits] = useState([]);
+  const [nickname, setNickname] = useState("");
   // const [currentPage, setCurrentPage] = useState(1);
 
   // const indexOfLastItem = currentPage * 10;
@@ -45,9 +46,19 @@ const Board = ({ type }) => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_SERVER_API}/dorandoran/findAllDoranDorans`
+          `${process.env.REACT_APP_SERVER_API}/dorandoran/findAllDoranDornas`
         );
         setDorandoran(response.data);
+
+        await axios
+          .get(`${process.env.REACT_APP_SERVER_API}/user/findUserById`, null, {
+            params: {
+              id: response.data.userId,
+            },
+          })
+          .then((data) => {
+            setNickname(data.nickname);
+          });
         console.log(dorandoran);
       } catch (error) {
         console.error(error);
@@ -82,7 +93,6 @@ const Board = ({ type }) => {
 
     if (minutesDifference < 60) {
       return rtf.format(-minutesDifference, "minute");
-
     } else {
       const hoursDifference = Math.floor(minutesDifference / 60);
       return rtf.format(-hoursDifference, "hour");
@@ -98,10 +108,14 @@ const Board = ({ type }) => {
             <tbody>
               {events.map((event) => (
                 <tr key={event.id}>
-                  <TableCell><UpT>Up</UpT></TableCell>
+                  <TableCell>
+                    <UpT>Up</UpT>
+                  </TableCell>
                   <TableCell>{event.title}</TableCell>
                   <TableCell>({event.status}/4)</TableCell>
-                  <TableCell>{event.category === "saecham" ? "새참 먹자" : "품앗이"}</TableCell>
+                  <TableCell>
+                    {event.category === "saecham" ? "새참 먹자" : "품앗이"}
+                  </TableCell>
                   <TableCell>{getRelativeTime(event.created)}</TableCell>
                 </tr>
               ))}
@@ -127,7 +141,7 @@ const Board = ({ type }) => {
                 <tr key={doran.id}>
                   <TableCell>{doran.id + 1}</TableCell>
                   <TableCell>{doran.title}</TableCell>
-                  <TableCell>{doran.name}</TableCell>
+                  <TableCell>{nickname}</TableCell>
                   <TableCell>{getRelativeTime(doran.created)}</TableCell>
                 </tr>
               ))}

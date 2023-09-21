@@ -1,11 +1,13 @@
-import Box from '@mui/material/Box';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 import axios from "axios";
 import Header from "components/Header";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { userState } from "states/GlobalState";
 import {
   FlexBox,
   WritingContainer,
@@ -15,6 +17,7 @@ import {
 } from "styles/Main";
 
 const Writing = () => {
+  const [userId, setUserId] = useRecoilState(userState);
   const [formData, setFormData] = useState({
     title: "",
     category: "",
@@ -34,37 +37,35 @@ const Writing = () => {
     e.preventDefault();
     try {
       if (formData.category === "gomin") {
-        await axios.post(
-          `${process.env.REACT_APP_SERVER_API}/dorandoran/create`,
-          null,
-          {
+        await axios
+          .post(`${process.env.REACT_APP_SERVER_API}/dorandoran/create`, null, {
             params: {
               title: formData.title,
               description: formData.contents,
-              userId: "userId"
-            }
-          }
-        )
+              userId,
+            },
+          })
+          .then((response) => {
+            console.log(response);
+          });
       } else {
-        await axios.post(
-          `${process.env.REACT_APP_SERVER_API}/event/create`,
-          null,
-          {
+        await axios
+          .post(`${process.env.REACT_APP_SERVER_API}/event/create`, null, {
             params: {
-              title: formData,
+              title: formData.title,
               description: formData.contents,
               category: formData.category,
-              status: ""
-            }
-          }
-        )
-
+              status: 1,
+            },
+          })
+          .then((response) => {
+            console.log(response);
+          });
       }
     } catch (error) {
       console.log(error);
     }
-  }
-
+  };
 
   return (
     <>
@@ -72,8 +73,21 @@ const Writing = () => {
       <form onSubmit={eventWriting}>
         <WritingContainer>
           <FlexBox>
-            <WritingTitleInput name="title" value={formData.title} onChange={handleChange} placeholder="제목" required />
-            <Box sx={{ minWidth: 120, width: '140px', height: '70px', marginLeft: '30px' }}>
+            <WritingTitleInput
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              placeholder="제목"
+              required
+            />
+            <Box
+              sx={{
+                minWidth: 120,
+                width: "140px",
+                height: "70px",
+                marginLeft: "30px",
+              }}
+            >
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">카테고리</InputLabel>
                 <Select
@@ -91,7 +105,13 @@ const Writing = () => {
               </FormControl>
             </Box>
           </FlexBox>
-          <WritingTextArea name="contents" value={formData.contents} onChange={handleChange} placeholder="내용" required />
+          <WritingTextArea
+            name="contents"
+            value={formData.contents}
+            onChange={handleChange}
+            placeholder="내용"
+            required
+          />
           <WritingSubmitBtton>글 작성</WritingSubmitBtton>
         </WritingContainer>
       </form>
