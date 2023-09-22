@@ -294,9 +294,18 @@ export const TableCell = styled.td`
   text-align: center;
 `;
 
+export const StyledTableCell = styled(TableCell)`
+  cursor: pointer;
+  width: 400px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 export const NavContainer = styled.div`
   width: 250px;
-  height: 320px;
+  height: 360px;
   background-color: #f0f0f0;
   padding: 20px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -349,15 +358,17 @@ export const UpT = styled.div`
 export const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  align-items: center;
+  margin-top: 1rem;
+  height: 50px;
 `;
 
 export const PaginationButton = styled.button`
-  margin: 0 5px;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
+  margin: 0 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border: none;
+  background-color: ${({ active }) => (active ? "#f0f0f0" : "#f8f9fa")};
   cursor: pointer;
-  background-color: #fff;
 `;
 
 // DetailedPost //
@@ -373,8 +384,8 @@ export function DetailedPostPublisher({ nickname, time, category }) {
       <div style={{ marginRight: '180px' }}>
         <PublisherNickName>{nickname}</PublisherNickName>
         <FlexBox>
-          <PublisherTimeNCategory>{time}</PublisherTimeNCategory>
           <PublisherTimeNCategory>{category}</PublisherTimeNCategory>
+          <PublisherTimeNCategory style={{ marginLeft: "10px" }}>{time}</PublisherTimeNCategory>
         </FlexBox>
       </div>
     </>

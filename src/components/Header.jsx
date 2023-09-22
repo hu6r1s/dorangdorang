@@ -31,25 +31,10 @@ const Header = ({ page }) => {
         )}
       </MenuContainer>
       {userId === undefined ? (
-        <>
-          <HeaderFlexBox>
-            <MyPageButton
-              onClick={() => {
-                navigate("/MyPage");
-              }}
-            >
-              마이페이지
-            </MyPageButton>
-            <LoginButton
-              onClick={() => {
-                console.log(userId);
-                navigate("/SignIn");
-              }}
-            >
-              로그인
-            </LoginButton>
-          </HeaderFlexBox>
-        </>
+        <LoginButton onClick={() => {
+          console.log("userid", userId)
+          navigate("/SignIn")
+        }}>로그인</LoginButton>
       ) : (
         <>
           <HeaderFlexBox>
