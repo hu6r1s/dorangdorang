@@ -283,9 +283,17 @@ export const TableCell = styled.td`
   text-align: center;
 `;
 
+export const StyledTableCell = styled(TableCell)`
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 export const NavContainer = styled.div`
   width: 250px;
-  height: 320px;
+  height: 360px;
   background-color: #f0f0f0;
   padding: 20px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
