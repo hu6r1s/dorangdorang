@@ -49,6 +49,7 @@ const DetailedPost2 = () => {
           }
         }
       );
+      console.log("asd", userId)
       console.log(commentCreateResponse);
     };
 
