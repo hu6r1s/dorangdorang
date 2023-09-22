@@ -49,6 +49,7 @@ const Writing = () => {
           })
           .then((response) => {
             console.log(response);
+            navigate("/")
           });
       } else {
         if (userId) {
