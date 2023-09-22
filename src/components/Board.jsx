@@ -104,8 +104,6 @@ const Board = ({ type }) => {
     return minutesDifference <= 30;
   });
 
-  const totalItems = dorandoran.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   // 페이지 변경 함수
   const handleDorandoranPageChange = (pageNumber) => {
@@ -205,7 +203,7 @@ const Board = ({ type }) => {
             </tbody>
           </StyledTable>
           <PaginationContainer>
-            {Array.from({ length: totalPages }).map((_, index) => (
+            {Array.from({ length: Math.ceil(dorandoran.length / itemsPerPage) }).map((_, index) => (
               <PaginationButton
                 key={index}
                 active={index + 1 === dorandoranCurrentPage}
@@ -242,7 +240,7 @@ const Board = ({ type }) => {
             </tbody>
           </StyledTable>
           <PaginationContainer>
-            {Array.from({ length: totalPages }).map((_, index) => (
+            {Array.from({ length: Math.ceil(benefits.length / itemsPerPage) }).map((_, index) => (
               <PaginationButton
                 key={index}
                 active={index + 1 === benefitsCurrentPage}
