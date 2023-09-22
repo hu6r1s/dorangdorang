@@ -78,6 +78,7 @@ const SignIn = () => {
               <StyledInput
                 name="user_password"
                 value={formData.user_password}
+                type="password"
                 onChange={handleChange}
                 placeholder="PASSWORD"
                 required
