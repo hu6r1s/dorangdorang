@@ -1,23 +1,19 @@
-import React, { useState } from "react";
-import AvatarTest from "../../assets/images/logo.png";
-import {
-  SmallContainer,
-  MyPageSector,
-  StyledAvatar,
-  FlexBox,
-  MyPageNomalText,
-  MyPageTitle,
-  MyPageModifyButton,
-  MyPageSubtitle,
-} from "../../styles/Main";
-import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
+import axios from "axios";
 import Carousel from "components/Carousel";
 import Header from "components/Header";
-import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userState } from "states/GlobalState";
+import {
+  FlexBox,
+  MyPageNomalText,
+  MyPageSector,
+  MyPageSubtitle,
+  MyPageTitle,
+  SmallContainer
+} from "../../styles/Main";
 
 
 const MyPage = () => {
@@ -52,20 +48,20 @@ const MyPage = () => {
           `${process.env.REACT_APP_SERVER_API}/farm/findAllFarms`,
           null,
           {
-            params:{
-              userId:userId,
+            params: {
+              userId: userId,
             }
           }
         );
-        const findedFarm = eventsResponse.data.filter((item) => item.userId===userId);
-        const findedFarmOut=findedFarm[0]; // 배열에서 객체 빼내기
-        setuserSelfIntro(findedFarmOut);        
+        const findedFarm = eventsResponse.data.filter((item) => item.userId === userId);
+        const findedFarmOut = findedFarm[0]; // 배열에서 객체 빼내기
+        setuserSelfIntro(findedFarmOut);
       } catch (error) {
         console.error(error);
       }
     };
     loadSelfIntro();
-  },[]);
+  }, []);
 
   return (
     <>
@@ -80,20 +76,20 @@ const MyPage = () => {
           </FlexBox>
           <MyPageSector>
             <FlexBox>
-              <div style={{ display: "flex", alignItems: "center", marginLeft:'20px' }}>
+              <div style={{ display: "flex", alignItems: "center", marginLeft: '20px' }}>
                 <div>
-                  <FlexBox style={{alignItems:'center', marginBottom:'5px'}}>
+                  <FlexBox style={{ alignItems: 'center', marginBottom: '5px' }}>
                     {/* 닉네임 */}
                     <MyPageNomalText
-                      style={{ fontWeight: "bold", marginRight: "10px", fontSize:'20px' }}
+                      style={{ fontWeight: "bold", marginRight: "10px", fontSize: '20px' }}
                     >
                       {userMyInfo.nickname}
                     </MyPageNomalText>
                     {/* 나이 */}
-                    <MyPageNomalText style={{fontSize:'12px'}}>{userMyInfo.age}세</MyPageNomalText>
+                    <MyPageNomalText style={{ fontSize: '12px' }}>{userMyInfo.age}세</MyPageNomalText>
                   </FlexBox>
                   {/* 한 줄 소개 */}
-                  <MyPageNomalText style={{fontSize:'15px'}}>
+                  <MyPageNomalText style={{ fontSize: '15px' }}>
                     {userMyInfo.description}
                   </MyPageNomalText>
                 </div>
@@ -126,7 +122,7 @@ const MyPage = () => {
                   <MyPageNomalText>
                     {/* 축구 */}
                     {userSelfIntro.hobit}
-                    </MyPageNomalText>
+                  </MyPageNomalText>
                 </div>
               </Grid>
               <Grid
