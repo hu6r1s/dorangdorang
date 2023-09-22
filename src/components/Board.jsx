@@ -177,7 +177,7 @@ const Board = ({ type }) => {
 
       {type === "gomin" && (
         <BoardItem>
-          <Title id="gomin">고민 토론</Title>
+          <Title id="gomin">도란 도란</Title>
           <StyledTable>
             <thead>
               <tr>
