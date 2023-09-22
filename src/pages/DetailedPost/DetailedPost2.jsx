@@ -1,6 +1,6 @@
 import axios from "axios";
 import Header from "components/Header";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userState } from "states/GlobalState";
@@ -23,6 +23,7 @@ const DetailedPost2 = () => {
   const [inputValue, setInputValue] = useState("");
   const [boardData, setBoardData] = useState({});
   const [userData, setUserData] = useState({});
+  const [comments, setComments] = useState([]);
   const [userId, setUserId] = useRecoilState(userState);
   const { id } = useParams();
 
@@ -50,22 +51,26 @@ const DetailedPost2 = () => {
             }
           );
           setUserData(userResponse.data);
-          console.log(userResponse.data.userId);
+          console.log("user", userResponse);
         } else {
           console.log("User ID not found in boardData:", boardData.userId);
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
+
+      const commentData = await fetchComments();
+      console.log("Comments:", commentData);
+      setComments(commentData);
     };
 
     fetchData();
 
-    // const intervalId = setInterval(fetchData, 3000); // 60초마다 데이터 요청
+    const intervalId = setInterval(fetchData, 3000); // 60초마다 데이터 요청
 
-    // return () => {
-    //   clearInterval(intervalId);
-    // };
+    return () => {
+      clearInterval(intervalId);
+    };
   }, [id, boardData.userId]);
 
   const onSubmit = async (e) => {
@@ -82,13 +87,71 @@ const DetailedPost2 = () => {
           }
         }
       );
-      console.log("asd", userId)
       console.log(commentCreateResponse);
+      const commentMessage = commentCreateResponse.data; // 예시: "31번 이벤트 등록 완료"
+      const commentId = commentMessage.split("번")[0].trim();
+      console.log(2, commentId)
+
+      try {
+        const eventData = await axios.post(
+          `${process.env.REACT_APP_SERVER_API}/eventCommentMap/create`,
+          null,
+          {
+            params: {
+              eventId: boardData.id, // commentId를 eventId로 사용
+              commentId: parseInt(commentId),
+            }
+          }
+        );
+        console.log(eventData);
+      } catch (error) {
+        console.error("Error registering for event:", error);
+      }
     } else {
-      console.log("error")
+      console.log("err")
     }
     setInputValue("");
   }
+
+  const fetchComments = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_API}/eventCommentMap/findCommentsByEventId`,
+        {
+          params: {
+            eventId: boardData.id, // 현재 이벤트의 ID를 파라미터로 전달
+          },
+        }
+      );
+      console.log(1, response)
+
+      // 각 댓글의 작성자 정보를 가져오기 위한 Promise 배열
+      const fetchUserPromises = response.data.map(async (comment) => {
+        try {
+          const userResponse = await axios.get(
+            `${process.env.REACT_APP_SERVER_API}/user/findUserById`,
+            {
+              params: {
+                id: comment.comment.userId,
+              },
+            }
+          );
+          comment.comment.user = userResponse.data; // 댓글 작성자 정보 추가
+          return comment;
+        } catch (error) {
+          console.error("Error fetching user data for comment:", error);
+          return comment; // 실패할 경우 원래 comment 유지
+        }
+      });
+
+      // 모든 댓글의 작성자 정보를 가져온 후 반환
+      const commentsWithUser = await Promise.all(fetchUserPromises);
+      return commentsWithUser;
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+      return []; // 오류 발생 시 빈 배열 반환 또는 오류 처리
+    }
+  };
 
   const getRelativeTime = (eventTime) => {
     const parsedEventTime = new Date(eventTime);
@@ -106,6 +169,18 @@ const DetailedPost2 = () => {
       }
     } else {
       return "Invalid time difference"; // 유효하지 않은 값 처리
+    }
+  };
+
+  function renderNewlines(text) {
+    if (typeof text === 'string') {
+      const newText = text.split('\n').map((line, index) => (
+        <Fragment key={index}>
+          {line}
+          <br />
+        </Fragment>
+      ));
+      return newText;
     }
   };
 
@@ -127,17 +202,20 @@ const DetailedPost2 = () => {
         <DetailedPostHorizon />
         <DetailedPostTitle>{boardData.title}</DetailedPostTitle>
         <DetailedPostContents>
-          {boardData.description}
+          {renderNewlines(boardData.description)}
         </DetailedPostContents>
         <DetailedPostHorizon />
         {/* 댓글 */}
         <DetailedPostCommentContainer>
-          <DetailedAnothers src={testProfile} nickname='댓글러1' time='10분 전' comment='테스트 댓글123'></DetailedAnothers>
-          <DetailedAnothers src={testProfile} nickname='댓글러1' time='10분 전' comment='테스트 댓글123'></DetailedAnothers>
-          <DetailedAnothers src={testProfile} nickname='댓글러1' time='10분 전' comment='테스트 댓글123'></DetailedAnothers>
-          <DetailedAnothers src={testProfile} nickname='댓글러1' time='10분 전' comment='테스트 댓글123'></DetailedAnothers>
-          <DetailedAnothers src={testProfile} nickname='댓글러1' time='10분 전' comment='테스트 댓글123'></DetailedAnothers>
-          <DetailedAnothers src={testProfile} nickname='댓글러1' time='10분 전' comment='테스트 댓글123'></DetailedAnothers>
+          {comments.map((comment) => (
+            <DetailedAnothers
+              key={comment.comment.id}
+              src={testProfile}
+              nickname={comment.comment.user.nickname}  // 닉네임 또는 댓글 데이터에서 가져온 사용자 정보 사용
+              time={getRelativeTime(comment.comment.created)} // 댓글 생성 시간
+              comment={comment.comment.text} // 댓글 내용
+            />
+          ))}
         </DetailedPostCommentContainer>
         {/* 인풋 */}
         <form onSubmit={onSubmit}>

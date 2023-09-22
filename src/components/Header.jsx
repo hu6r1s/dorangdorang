@@ -18,7 +18,12 @@ const Header = ({ page }) => {
   const [userId, setUserId] = useRecoilState(userState);
   return (
     <HeaderContainer>
-      <LogoImage src={Logo} alt="로고 이미지" onClick={() => navigate("/")} />
+      <LogoImage
+        src={Logo}
+        alt="로고 이미지"
+        onClick={() => navigate("/")}
+        style={{ cursor: "pointer" }}
+      />
       <MenuContainer>
         {page === "map" && (
           <>

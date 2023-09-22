@@ -59,6 +59,7 @@ const Writing = () => {
                 description: formData.contents,
                 category: formData.category,
                 status: 1,
+                userId,
               },
             })
             .then((response) => {
