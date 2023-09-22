@@ -18,7 +18,6 @@ import {
   PublisherProfile
 } from "styles/Main";
 import testProfile from "../../assets/images/logo2.png";
-import axios from "axios";
 
 const DetailedPost = () => {
   const [inputValue, setInputValue] = useState("");
