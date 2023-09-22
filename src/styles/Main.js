@@ -14,6 +14,15 @@ export const LoginButton = styled.div`
   margin-left: auto;
 `;
 
+export const MyPageButton = styled(LoginButton)`
+  margin-right:50px;
+`
+
+export const HeaderFlexBox = styled.div`
+  display:flex;
+  margin-left:auto;
+`
+
 export const HeaderContainer = styled.div`
   display: flex;
   /* justify-content: space-between; */
@@ -21,6 +30,8 @@ export const HeaderContainer = styled.div`
   padding: 0 100px;
   background-color: #eeecd8;
 `;
+
+
 
 export const MenuContainer = styled.div`
   display: flex;
