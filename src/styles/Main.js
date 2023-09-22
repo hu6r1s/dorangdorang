@@ -166,7 +166,7 @@ export const MyPageSector = styled.div`
   border: 3px solid #8f6b42;
   width: 550px;
   padding: 10px;
-  border-radius: 40px;
+  border-radius: 30px;
   margin: 0 auto;
   margin-bottom:20px;
 `;
