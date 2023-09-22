@@ -13,6 +13,7 @@ const Header = ({ page }) => {
         src={Logo}
         alt="로고 이미지"
         onClick={() => navigate("/")}
+        style={{ cursor: "pointer" }}
       />
       <MenuContainer>
         {page === "map" && (
