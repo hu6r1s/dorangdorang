@@ -19,6 +19,7 @@ const Board = ({ type }) => {
   const [dorandoran, setDorandoran] = useState([]);
   const [benefits, setBenefits] = useState([]);
   const [nickname, setNickname] = useState([]);
+  const [eventUserMapData, setEventUserMapData] = useState([]);
   const [dorandoranCurrentPage, setDorandoranCurrentPage] = useState(1);
   const [benefitsCurrentPage, setBenefitsCurrentPage] = useState(1);
   const itemsPerPage = 10; // 페이지당 아이템 수
@@ -35,7 +36,7 @@ const Board = ({ type }) => {
         setEvents(sortedEvents);
 
         const dorandoranResponse = await axios.get(
-          `${process.env.REACT_APP_SERVER_API}/dorandoran/findAllDoranDornas`
+          `${process.env.REACT_APP_SERVER_API}/dorandoran/findAllDoranDorans`
         );
         const sortedDoranDoran = dorandoranResponse.data.sort((a, b) =>
           new Date(b.created) - new Date(a.created)
@@ -124,6 +125,31 @@ const Board = ({ type }) => {
   const benefitsEndIndex = benefitsStartIndex + itemsPerPage;
   const benefitsItems = benefits.slice(benefitsStartIndex, benefitsEndIndex);
 
+  useEffect(() => {
+    // 이벤트의 참가자 수를 가져오는 API를 호출하고 데이터를 업데이트합니다.
+    const fetchEventUserMaps = async (eventId) => {
+      try {
+        const eventUserMapsResponse = await axios.get(
+          `${process.env.REACT_APP_SERVER_API}/eventUserMap/findEventUserMapsByEventId`,
+          {
+            params: {
+              eventId,
+            },
+          }
+        );
+        setEventUserMapData(eventUserMapsResponse.data);
+        console.log(eventUserMapData.length);
+
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    events.forEach((event) => {
+      fetchEventUserMaps(event.id); // event.id를 eventId로 사용
+    });
+  }, [events]);
+
   return (
     <>
       {type === "saecham" && (
@@ -136,8 +162,10 @@ const Board = ({ type }) => {
                   <TableCell>
                     <UpT>Up</UpT>
                   </TableCell>
-                  <TableCell>{event.title}</TableCell>
-                  <TableCell>({event.status}/4)</TableCell>
+                  <StyledTableCell
+                    onClick={() => navigate(`/event/${event.id}`)}
+                  >{event.title}</StyledTableCell>
+                  <TableCell>({eventUserMapData.length}/4)</TableCell>
                   <TableCell>
                     {event.category === "saecham" ? "새참 먹자" : "품앗이"}
                   </TableCell>

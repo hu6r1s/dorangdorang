@@ -6,6 +6,7 @@ import Select from "@mui/material/Select";
 import axios from "axios";
 import Header from "components/Header";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userState } from "states/GlobalState";
 import {
@@ -17,6 +18,7 @@ import {
 } from "styles/Main";
 
 const Writing = () => {
+  const navigate = useNavigate();
   const [userId, setUserId] = useRecoilState(userState);
   const [formData, setFormData] = useState({
     title: "",
@@ -49,18 +51,23 @@ const Writing = () => {
             console.log(response);
           });
       } else {
-        await axios
-          .post(`${process.env.REACT_APP_SERVER_API}/event/create`, null, {
-            params: {
-              title: formData.title,
-              description: formData.contents,
-              category: formData.category,
-              status: 1,
-            },
-          })
-          .then((response) => {
-            console.log(response);
-          });
+        if (userId) {
+          await axios
+            .post(`${process.env.REACT_APP_SERVER_API}/event/create`, null, {
+              params: {
+                title: formData.title,
+                description: formData.contents,
+                category: formData.category,
+                status: 1,
+              },
+            })
+            .then((response) => {
+              console.log(response);
+              navigate("/");
+            });
+        } else {
+          console.log("err");
+        }
       }
     } catch (error) {
       console.log(error);
