@@ -1,8 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   BoardItem,
+  PaginationButton,
+  PaginationContainer,
   StyledTable,
+  StyledTableCell,
   TableCell,
   TableHeader,
   Title,
@@ -10,21 +14,14 @@ import {
 } from "styles/Main";
 
 const Board = ({ type }) => {
+  const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [dorandoran, setDorandoran] = useState([]);
   const [benefits, setBenefits] = useState([]);
   const [nickname, setNickname] = useState([]);
-  // const [currentPage, setCurrentPage] = useState(1);
-
-  // const indexOfLastItem = currentPage * 10;
-  // const indexOfFirstItem = indexOfLastItem - 10;
-  // const currentItems = gomins.slice(indexOfFirstItem, indexOfLastItem);
-
-  // const totalPages = Math.ceil(gomins.length / 10);
-
-  // const handlePageChange = (pageNumber) => {
-  //   setCurrentPage(pageNumber);
-  // };
+  const [dorandoranCurrentPage, setDorandoranCurrentPage] = useState(1);
+  const [benefitsCurrentPage, setBenefitsCurrentPage] = useState(1);
+  const itemsPerPage = 10; // 페이지당 아이템 수
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -106,6 +103,27 @@ const Board = ({ type }) => {
     return minutesDifference <= 30;
   });
 
+  const totalItems = dorandoran.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  // 페이지 변경 함수
+  const handleDorandoranPageChange = (pageNumber) => {
+    setDorandoranCurrentPage(pageNumber);
+  };
+
+  const handleBenefitsPageChange = (pageNumber) => {
+    setBenefitsCurrentPage(pageNumber);
+  };
+
+  // 현재 페이지에 해당하는 아이템 필터링
+  const dorandoranStartIndex = (dorandoranCurrentPage - 1) * itemsPerPage;
+  const dorandoranEndIndex = dorandoranStartIndex + itemsPerPage;
+  const dorandoranItems = dorandoran.slice(dorandoranStartIndex, dorandoranEndIndex);
+
+  const benefitsStartIndex = (benefitsCurrentPage - 1) * itemsPerPage;
+  const benefitsEndIndex = benefitsStartIndex + itemsPerPage;
+  const benefitsItems = benefits.slice(benefitsStartIndex, benefitsEndIndex);
+
   return (
     <>
       {type === "saecham" && (
@@ -144,27 +162,31 @@ const Board = ({ type }) => {
               </tr>
             </thead>
             <tbody>
-              {dorandoran && dorandoran.map((doran, index) => (
+              {dorandoran && dorandoranItems.map((doran, index) => (
                 <tr key={doran.id}>
                   <TableCell>{doran.id}</TableCell>
-                  <TableCell>{doran.title}</TableCell>
+                  <StyledTableCell
+                    onClick={() => navigate(`/dorandoran/${doran.id}`)}
+                  >
+                    {doran.title}
+                  </StyledTableCell>
                   <TableCell>{nickname[index]}</TableCell>
                   <TableCell>{getRelativeTime(doran.created)}</TableCell>
                 </tr>
               ))}
             </tbody>
           </StyledTable>
-          {/* <PaginationContainer>
+          <PaginationContainer>
             {Array.from({ length: totalPages }).map((_, index) => (
               <PaginationButton
                 key={index}
-                active={index + 1 === currentPage}
-                onClick={() => handlePageChange(index + 1)}
+                active={index + 1 === dorandoranCurrentPage}
+                onClick={() => handleDorandoranPageChange(index + 1)}
               >
                 {index + 1}
               </PaginationButton>
             ))}
-          </PaginationContainer> */}
+          </PaginationContainer>
         </BoardItem>
       )}
 
@@ -181,7 +203,7 @@ const Board = ({ type }) => {
               </tr>
             </thead>
             <tbody>
-              {benefits && benefits.map((benefit) => (
+              {benefits && benefitsItems.map((benefit) => (
                 <tr key={benefit.id}>
                   <TableCell>{benefit.id + 1}</TableCell>
                   <TableCell>{benefit.title}</TableCell>
@@ -191,17 +213,17 @@ const Board = ({ type }) => {
               ))}
             </tbody>
           </StyledTable>
-          {/* <PaginationContainer>
+          <PaginationContainer>
             {Array.from({ length: totalPages }).map((_, index) => (
               <PaginationButton
                 key={index}
-                active={index + 1 === currentPage}
-                onClick={() => handlePageChange(index + 1)}
+                active={index + 1 === benefitsCurrentPage}
+                onClick={() => handleBenefitsPageChange(index + 1)}
               >
                 {index + 1}
               </PaginationButton>
             ))}
-          </PaginationContainer> */}
+          </PaginationContainer>
         </BoardItem>
       )}
     </>
