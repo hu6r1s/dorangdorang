@@ -373,8 +373,8 @@ export function DetailedPostPublisher({ nickname, time, category }) {
       <div style={{ marginRight: '180px' }}>
         <PublisherNickName>{nickname}</PublisherNickName>
         <FlexBox>
-          <PublisherTimeNCategory>{time}</PublisherTimeNCategory>
           <PublisherTimeNCategory>{category}</PublisherTimeNCategory>
+          <PublisherTimeNCategory style={{ marginLeft: "10px" }}>{time}</PublisherTimeNCategory>
         </FlexBox>
       </div>
     </>
