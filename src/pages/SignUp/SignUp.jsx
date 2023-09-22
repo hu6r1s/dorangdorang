@@ -149,6 +149,7 @@ const SignUp = () => {
                   onChange={handleChange}
                   required
                 >
+                  <option value="default">선택</option>
                   <option value="male">남자</option>
                   <option value="female">여자</option>
                 </SignUpSelect>
@@ -177,6 +178,7 @@ const SignUp = () => {
                 <StyledLabel style={{ fontSize: "15px" }}>비밀번호</StyledLabel>
                 <br />
                 <StyledInput
+                  type="password"
                   width={"100%"}
                   height={"20px"}
                   fontSize={"15px"}
