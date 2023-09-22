@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { userState } from "states/GlobalState";
 import {
   BoardItem,
   PaginationButton,
@@ -22,6 +24,7 @@ const Board = ({ type }) => {
   const [eventUserMapData, setEventUserMapData] = useState([]);
   const [dorandoranCurrentPage, setDorandoranCurrentPage] = useState(1);
   const [benefitsCurrentPage, setBenefitsCurrentPage] = useState(1);
+  const [userId, setUserId] = useRecoilState(userState);
   const itemsPerPage = 10; // 페이지당 아이템 수
 
   useEffect(() => {
@@ -161,7 +164,11 @@ const Board = ({ type }) => {
                     <UpT>Up</UpT>
                   </TableCell>
                   <StyledTableCell
-                    onClick={() => navigate(`/event/${event.id}`)}
+                    onClick={() => {
+                      if (userId) {
+                        navigate(`/event/${event.id}`);
+                      }
+                    }}
                   >{event.title}</StyledTableCell>
                   <TableCell>({eventUserMapData.length}/4)</TableCell>
                   <TableCell>
@@ -192,7 +199,10 @@ const Board = ({ type }) => {
                 <tr key={doran.id}>
                   <TableCell>{doran.id}</TableCell>
                   <StyledTableCell
-                    onClick={() => navigate(`/dorandoran/${doran.id}`)}
+                    onClick={() => {
+                      if (userId)
+                        navigate(`/dorandoran/${doran.id}`)
+                    }}
                   >
                     {doran.title}
                   </StyledTableCell>
