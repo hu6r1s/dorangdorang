@@ -34,6 +34,7 @@ const NextSignUp = () => {
       ...formData,
       [name]: value,
     });
+    console.log(formData)
   };
 
 
@@ -42,6 +43,37 @@ const NextSignUp = () => {
     console.log("제출된 데이터:", formData);
     navigate("/"); // 이동할 경로를 지정합니다.
   };
+
+  const fileList = []; // 업로드한 파일들을 저장하는 배열
+
+  const onSaveFiles = (e) => {
+      const uploadFiles = Array.prototype.slice.call(e.target.files); // 파일선택창에서 선택한 파일들
+
+      uploadFiles.forEach((uploadFile) => {
+          fileList.push(uploadFile);
+      });
+  };
+
+  const onFileUpload = () => {
+      const formData = new FormData();
+
+      fileList.forEach((file) => {
+          // 파일 데이터 저장
+          formData.append('multipartFiles', file);
+      });
+
+      // 객체
+      const foodDto = {
+          name: '피자',
+          price: 13500,
+      };
+
+      formData.append('stringFoodDto', JSON.stringify(foodDto)); // 직렬화하여 객체 저장
+
+      axios.post('http://localhost:8080/uploadFiles', formData);
+  };
+
+
 
   const register = async (e) => {
     e.preventDefault();
@@ -63,6 +95,30 @@ const NextSignUp = () => {
       );
       console.log(response);
       navigate("/SignIn");
+      
+
+      const imageFormData = new FormData();
+      imageFormData.append("file", formData.user_profileImage);
+      const SendImage = await axios.post(
+        `${process.env.REACT_APP_SERVER_API}/content/create`,
+        JSON.stringify({
+          "multipartFiles": [
+            `${formData.user_profileImage.name}`
+          ]
+        }),
+        {
+          params: {
+            userId: location.state.userId,
+            targetId: response.data,
+            category : 3,
+          }
+        }
+      );
+      console.log("이미지 업로드 테스트 ///////")
+      console.log(SendImage);
+
+      
+
     } catch (error) {
       console.log(error);
     }
@@ -80,6 +136,7 @@ const NextSignUp = () => {
       ...formData,
       user_profileImage: fileInputRef.current?.files[0],
     });
+    console.log(formData);
   };
 
   // 렌더링
@@ -207,11 +264,12 @@ const NextSignUp = () => {
                 id="fileInput"
                 name="user_profile"
                 ref={fileInputRef} // ref 연결
-                onChange={handleFileInputChange}
+                onChange={onSaveFiles}
                 style={{ display: "none" }}
+                multiple
               />
               <StyledButton
-                onClick={() => fileInputRef.current.click()} // ref를 사용하여 파일 입력란 클릭
+                onClick={onFileUpload} // ref를 사용하여 파일 입력란 클릭
                 style={{
                   width: "80px",
                   height: "40px",
