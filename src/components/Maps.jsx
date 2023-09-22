@@ -1,4 +1,4 @@
-import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, InfoWindowF, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import React, { useCallback, useState } from "react";
 
 const containerStyle = {
@@ -26,6 +26,7 @@ function Maps() {
   });
 
   const [map, setMap] = useState(null);
+  const [selectedMarker, setSelectedMarker] = useState(null);
 
   const onLoad = useCallback(function callback(map) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
@@ -54,7 +55,24 @@ function Maps() {
       <MarkerF
         onLoad={onLoad}
         position={{ lat: 36.769652, lng: 126.932406 }}
+        onClick={() => {
+          setSelectedMarker({ lat: 36.769652, lng: 126.932406 });
+        }}
       />
+      {selectedMarker && (
+        <InfoWindowF
+          position={selectedMarker}
+          anchor={map}
+          options={{ pixelOffset: new window.google.maps.Size(0, -25) }}
+          onCloseClick={() => {
+            setSelectedMarker(null);
+          }}
+        >
+          <div>
+            <h1> info </h1>
+          </div>
+        </InfoWindowF>
+      )}
     </GoogleMap >
   ) : (
     <></>
