@@ -33,24 +33,31 @@ const Board = ({ type }) => {
         const eventsResponse = await axios.get(
           `${process.env.REACT_APP_SERVER_API}/event/findAllEvents`
         );
-        const sortedEvents = eventsResponse.data.sort((a, b) =>
-          new Date(b.created) - new Date(a.created)
+        const sortedEvents = eventsResponse.data.sort(
+          (a, b) => new Date(b.created) - new Date(a.created)
         );
         setEvents(sortedEvents);
+
+        const participantsCounts = await Promise.all(
+          sortedEvents.map((event) => fetchParticipantsCount(event.id))
+        );
+
+        // Update the eventUserMapData array with participant counts
+        setEventUserMapData(participantsCounts);
 
         const dorandoranResponse = await axios.get(
           `${process.env.REACT_APP_SERVER_API}/dorandoran/findAllDoranDorans`
         );
-        const sortedDoranDoran = dorandoranResponse.data.sort((a, b) =>
-          new Date(b.created) - new Date(a.created)
+        const sortedDoranDoran = dorandoranResponse.data.sort(
+          (a, b) => new Date(b.created) - new Date(a.created)
         );
         setDorandoran(sortedDoranDoran);
 
         const benefitsResponse = await axios.get(
           `${process.env.REACT_APP_SERVER_API}/benefit/findAllBenefits`
         );
-        const sortedBenefit = benefitsResponse.data.sort((a, b) =>
-          new Date(b.created) - new Date(a.created)
+        const sortedBenefit = benefitsResponse.data.sort(
+          (a, b) => new Date(b.created) - new Date(a.created)
         );
         setBenefits(sortedBenefit);
 
@@ -58,18 +65,17 @@ const Board = ({ type }) => {
 
         const userResponses = await Promise.all(
           userIds.map((userId) =>
-            axios.get(
-              `${process.env.REACT_APP_SERVER_API}/user/findUserById`,
-              {
-                params: {
-                  id: userId,
-                },
-              }
-            )
+            axios.get(`${process.env.REACT_APP_SERVER_API}/user/findUserById`, {
+              params: {
+                id: userId,
+              },
+            })
           )
         );
 
-        const nicknames = userResponses.map((response) => response.data.nickname);
+        const nicknames = userResponses.map(
+          (response) => response.data.nickname
+        );
 
         setNickname(nicknames);
       } catch (error) {
@@ -107,7 +113,6 @@ const Board = ({ type }) => {
     return minutesDifference <= 30;
   });
 
-
   // 페이지 변경 함수
   const handleDorandoranPageChange = (pageNumber) => {
     setDorandoranCurrentPage(pageNumber);
@@ -120,36 +125,41 @@ const Board = ({ type }) => {
   // 현재 페이지에 해당하는 아이템 필터링
   const dorandoranStartIndex = (dorandoranCurrentPage - 1) * itemsPerPage;
   const dorandoranEndIndex = dorandoranStartIndex + itemsPerPage;
-  const dorandoranItems = dorandoran.slice(dorandoranStartIndex, dorandoranEndIndex);
+  const dorandoranItems = dorandoran.slice(
+    dorandoranStartIndex,
+    dorandoranEndIndex
+  );
 
   const benefitsStartIndex = (benefitsCurrentPage - 1) * itemsPerPage;
   const benefitsEndIndex = benefitsStartIndex + itemsPerPage;
   const benefitsItems = benefits.slice(benefitsStartIndex, benefitsEndIndex);
 
-  useEffect(() => {
-    // 이벤트의 참가자 수를 가져오는 API를 호출하고 데이터를 업데이트합니다.
-    const fetchEventUserMaps = async (eventId) => {
-      try {
-        const eventUserMapsResponse = await axios.get(
-          `${process.env.REACT_APP_SERVER_API}/eventUserMap/findEventUserMapsByEventId`,
-          {
-            params: {
-              eventId,
-            },
-          }
-        );
-        setEventUserMapData(eventUserMapsResponse.data);
-        console.log(eventUserMapData.length);
+  const fetchParticipantsCount = async (eventId) => {
+    try {
+      const participantsResponse = await axios.get(
+        `${process.env.REACT_APP_SERVER_API}/eventUserMap/findEventUserMapsByEventId`,
+        {
+          params: {
+            eventId,
+          },
+        }
+      );
+      const uniqueUserIds = new Set();
 
-      } catch (error) {
-        console.error(error);
-      }
-    };
+      // Iterate through participants and add unique userIds to the Set
+      participantsResponse.data.forEach((participant) => {
+        uniqueUserIds.add(participant.userId);
+      });
 
-    events.forEach((event) => {
-      fetchEventUserMaps(event.id); // event.id를 eventId로 사용
-    });
-  }, [events]);
+      // Calculate the count of unique userIds
+      const uniqueParticipantsCount = uniqueUserIds.size;
+
+      return uniqueParticipantsCount;
+    } catch (error) {
+      console.error(error);
+      return 0; // Return 0 in case of an error
+    }
+  };
 
   return (
     <>
@@ -158,7 +168,7 @@ const Board = ({ type }) => {
           <Title id="saecham">새참 먹자 & 품앗이</Title>
           <StyledTable>
             <tbody>
-              {saechamAndPoomEvents.map((event) => (
+              {saechamAndPoomEvents.map((event, index) => (
                 <tr key={event.id}>
                   <TableCell>
                     <UpT>Up</UpT>
@@ -166,11 +176,15 @@ const Board = ({ type }) => {
                   <StyledTableCell
                     onClick={() => {
                       if (userId) {
-                        navigate(`/event/${event.id}`);
+                        navigate(`/event/${event.id}`, {
+                          state: { count: eventUserMapData[index] },
+                        });
                       }
                     }}
-                  >{event.title}</StyledTableCell>
-                  <TableCell>({eventUserMapData.length}/4)</TableCell>
+                  >
+                    {event.title}
+                  </StyledTableCell>
+                  <TableCell>({eventUserMapData[index]}/4)</TableCell>
                   <TableCell>
                     {event.category === "saecham" ? "새참 먹자" : "품앗이"}
                   </TableCell>
@@ -195,25 +209,27 @@ const Board = ({ type }) => {
               </tr>
             </thead>
             <tbody>
-              {dorandoran && dorandoranItems.map((doran, index) => (
-                <tr key={doran.id}>
-                  <TableCell>{doran.id}</TableCell>
-                  <StyledTableCell
-                    onClick={() => {
-                      if (userId)
-                        navigate(`/dorandoran/${doran.id}`)
-                    }}
-                  >
-                    {doran.title}
-                  </StyledTableCell>
-                  <TableCell>{nickname[index]}</TableCell>
-                  <TableCell>{getRelativeTime(doran.created)}</TableCell>
-                </tr>
-              ))}
+              {dorandoran &&
+                dorandoranItems.map((doran, index) => (
+                  <tr key={doran.id}>
+                    <TableCell>{doran.id}</TableCell>
+                    <StyledTableCell
+                      onClick={() => {
+                        if (userId) navigate(`/dorandoran/${doran.id}`);
+                      }}
+                    >
+                      {doran.title}
+                    </StyledTableCell>
+                    <TableCell>{nickname[index]}</TableCell>
+                    <TableCell>{getRelativeTime(doran.created)}</TableCell>
+                  </tr>
+                ))}
             </tbody>
           </StyledTable>
           <PaginationContainer>
-            {Array.from({ length: Math.ceil(dorandoran.length / itemsPerPage) }).map((_, index) => (
+            {Array.from({
+              length: Math.ceil(dorandoran.length / itemsPerPage),
+            }).map((_, index) => (
               <PaginationButton
                 key={index}
                 active={index + 1 === dorandoranCurrentPage}
@@ -239,18 +255,21 @@ const Board = ({ type }) => {
               </tr>
             </thead>
             <tbody>
-              {benefits && benefitsItems.map((benefit) => (
-                <tr key={benefit.id}>
-                  <TableCell>{benefit.id + 1}</TableCell>
-                  <TableCell>{benefit.title}</TableCell>
-                  <TableCell>{benefit.name}</TableCell>
-                  <TableCell>{getRelativeTime(benefit.created)} 전</TableCell>
-                </tr>
-              ))}
+              {benefits &&
+                benefitsItems.map((benefit) => (
+                  <tr key={benefit.id}>
+                    <TableCell>{benefit.id + 1}</TableCell>
+                    <TableCell>{benefit.title}</TableCell>
+                    <TableCell>{benefit.name}</TableCell>
+                    <TableCell>{getRelativeTime(benefit.created)} 전</TableCell>
+                  </tr>
+                ))}
             </tbody>
           </StyledTable>
           <PaginationContainer>
-            {Array.from({ length: Math.ceil(benefits.length / itemsPerPage) }).map((_, index) => (
+            {Array.from({
+              length: Math.ceil(benefits.length / itemsPerPage),
+            }).map((_, index) => (
               <PaginationButton
                 key={index}
                 active={index + 1 === benefitsCurrentPage}

@@ -1,6 +1,6 @@
 import axios from "axios";
 import Header from "components/Header";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userState } from "states/GlobalState";
@@ -15,7 +15,7 @@ import {
   DetailedPostSendButton,
   DetailedPostTitle,
   FlexBox,
-  PublisherProfile
+  PublisherProfile,
 } from "styles/Main";
 import testProfile from "../../assets/images/logo2.png";
 
@@ -38,7 +38,7 @@ const DetailedPost2 = () => {
         }
       );
       setBoardData(boardResponse.data);
-      console.log(boardData)
+      console.log(boardData);
 
       try {
         if (boardData.userId) {
@@ -47,10 +47,11 @@ const DetailedPost2 = () => {
             {
               params: {
                 id: boardData.userId,
-              }
+              },
             }
           );
           setUserData(userResponse.data);
+
           console.log("user", userResponse);
         } else {
           console.log("User ID not found in boardData:", boardData.userId);
@@ -66,11 +67,14 @@ const DetailedPost2 = () => {
 
     fetchData();
 
-    const intervalId = setInterval(fetchData, 3000); // 60초마다 데이터 요청
+    // const intervalId = setInterval(() => {
+    //   fetchData(); // 주기적으로 데이터 업데이트
+    // }, 3000); // 5초마다 업데이트 (1000ms = 1초)
 
-    return () => {
-      clearInterval(intervalId);
-    };
+    // // 컴포넌트가 언마운트될 때 interval 정리
+    // return () => {
+    //   clearInterval(intervalId);
+    // };
   }, [id, boardData.userId]);
 
   const onSubmit = async (e) => {
@@ -84,13 +88,13 @@ const DetailedPost2 = () => {
             text: inputValue,
             status: 1,
             userId,
-          }
+          },
         }
       );
       console.log(commentCreateResponse);
       const commentMessage = commentCreateResponse.data; // 예시: "31번 이벤트 등록 완료"
       const commentId = commentMessage.split("번")[0].trim();
-      console.log(2, commentId)
+      console.log(2, commentId);
 
       try {
         const eventData = await axios.post(
@@ -100,7 +104,7 @@ const DetailedPost2 = () => {
             params: {
               eventId: boardData.id, // commentId를 eventId로 사용
               commentId: parseInt(commentId),
-            }
+            },
           }
         );
         console.log(eventData);
@@ -108,10 +112,14 @@ const DetailedPost2 = () => {
         console.error("Error registering for event:", error);
       }
     } else {
-      console.log("err")
+      console.log("err");
     }
+
+    const commentData = await fetchComments();
+    console.log("Comments:", commentData);
+    setComments(commentData);
     setInputValue("");
-  }
+  };
 
   const fetchComments = async () => {
     try {
@@ -123,7 +131,7 @@ const DetailedPost2 = () => {
           },
         }
       );
-      console.log(1, response)
+      console.log(1, response);
 
       // 각 댓글의 작성자 정보를 가져오기 위한 Promise 배열
       const fetchUserPromises = response.data.map(async (comment) => {
@@ -173,8 +181,8 @@ const DetailedPost2 = () => {
   };
 
   function renderNewlines(text) {
-    if (typeof text === 'string') {
-      const newText = text.split('\n').map((line, index) => (
+    if (typeof text === "string") {
+      const newText = text.split("\n").map((line, index) => (
         <Fragment key={index}>
           {line}
           <br />
@@ -182,7 +190,14 @@ const DetailedPost2 = () => {
       ));
       return newText;
     }
-  };
+  }
+
+  const scrollRef = useRef();
+  useEffect(() => {
+    // 현재 스크롤 위치 === scrollRef.current.scrollTop
+    // 스크롤 길이 === scrollRef.current.scrollHeight
+    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  });
 
   return (
     <>
@@ -206,12 +221,12 @@ const DetailedPost2 = () => {
         </DetailedPostContents>
         <DetailedPostHorizon />
         {/* 댓글 */}
-        <DetailedPostCommentContainer>
+        <DetailedPostCommentContainer ref={scrollRef}>
           {comments.map((comment) => (
             <DetailedAnothers
               key={comment.comment.id}
               src={testProfile}
-              nickname={comment.comment.user.nickname}  // 닉네임 또는 댓글 데이터에서 가져온 사용자 정보 사용
+              nickname={comment.comment.user.nickname} // 닉네임 또는 댓글 데이터에서 가져온 사용자 정보 사용
               time={getRelativeTime(comment.comment.created)} // 댓글 생성 시간
               comment={comment.comment.text} // 댓글 내용
             />
@@ -220,7 +235,10 @@ const DetailedPost2 = () => {
         {/* 인풋 */}
         <form onSubmit={onSubmit}>
           <FlexBox>
-            <DetailedPostInput onChange={(e) => setInputValue(e.target.value)} value={inputValue} />
+            <DetailedPostInput
+              onChange={(e) => setInputValue(e.target.value)}
+              value={inputValue}
+            />
             <DetailedPostSendButton type="submit">전송</DetailedPostSendButton>
           </FlexBox>
         </form>

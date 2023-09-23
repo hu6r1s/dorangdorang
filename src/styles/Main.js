@@ -15,13 +15,13 @@ export const LoginButton = styled.div`
 `;
 
 export const MyPageButton = styled(LoginButton)`
-  margin-right:50px;
-`
+  margin-right: 50px;
+`;
 
 export const HeaderFlexBox = styled.div`
-  display:flex;
-  margin-left:auto;
-`
+  display: flex;
+  margin-left: auto;
+`;
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -30,8 +30,6 @@ export const HeaderContainer = styled.div`
   padding: 0 100px;
   background-color: #eeecd8;
 `;
-
-
 
 export const MenuContainer = styled.div`
   display: flex;
@@ -136,12 +134,12 @@ export const StyledButton = styled(Button)(
 );
 
 export const SignUpSelect = styled.select`
-  width:100%;
-  height:20px;
-  margin-top:5px;
-  font-size:15px;
-  border-radius:5px;
-  border:2px solid black;
+  width: 100%;
+  height: 20px;
+  margin-top: 5px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 2px solid black;
 `;
 
 // MyPage Page About //
@@ -168,28 +166,28 @@ export const MyPageSector = styled.div`
   padding: 10px;
   border-radius: 30px;
   margin: 0 auto;
-  margin-bottom:20px;
+  margin-bottom: 20px;
 `;
 
 export const FlexBox = styled.div`
-  display:flex;
+  display: flex;
 `;
 
 export const MyPageTitle = styled.div`
-  font-size:25px;
-  font-weight:bold;
-  margin-left:30px;
-  margin-bottom:10px;
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 30px;
+  margin-bottom: 10px;
 `;
 
 export const MyPageSubtitle = styled.div`
-  font-size:20px;
-  font-weight:bold;
-  margin-bottom:5px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
 `;
 
 export const MyPageNomalText = styled.div`
-  font-size:15px;
+  font-size: 15px;
 `;
 
 export const MyPageModifyButton = styled.div`
@@ -197,11 +195,10 @@ export const MyPageModifyButton = styled.div`
   background-color: rgba(255, 0, 0, 0);
 `;
 
-
 // BenefitsBoard Page About //
 export const BenefitsBoardContainer = styled.div`
   display: flex;
-  flex-direction : column;
+  flex-direction: column;
   align-items: start;
   padding: 50px;
   position: relative;
@@ -211,53 +208,52 @@ export const BenefitsBoardContainer = styled.div`
   border: 3px solid #8f6b42;
   border-radius: 40px;
   margin: 0 auto;
-`
-
+`;
 
 export const BenefitsBoardTitle = styled.div`
-  font-size:30px;
-  font-weight:bold;
-  margin-bottom:10px;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
 `;
 
 export const BenefitsBoardSubtitle = styled.div`
-  font-size:20px;
-  font-weight:bold;
-  color:#6A6969;
-  margin-bottom:5px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #6a6969;
+  margin-bottom: 5px;
 `;
 
 export const BenefitsBoardCategory = styled.div`
-  font-size:25px;
-  font-weight:bold;
-  margin-bottom:5px;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 5px;
 `;
 
 export const BenefitsBoardNomalText = styled.div`
-  font-size:20px;
-  margin-bottom:50px;
+  font-size: 20px;
+  margin-bottom: 50px;
 `;
 
 export const BenefitsBoardButton = styled.button`
-    width: 500px;
-    height: 50px;
-    margin: 0px auto;
-    background-color:#A4651B;
-    border:3px solid #dd923d;
-    color:white;
-    font-size:20px;
-    font-weight:bold;
-    border-radius:10px;
-    &:hover{
-      cursor:pointer;
-      opacity:0.9;
-    }
-`
+  width: 500px;
+  height: 50px;
+  margin: 0px auto;
+  background-color: #a4651b;
+  border: 3px solid #dd923d;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
+  }
+`;
 
 export const BenefitsBoardHorizon = styled.hr`
-    width:500px;
-    border: 2px solid #7BB144;
-`
+  width: 500px;
+  border: 2px solid #7bb144;
+`;
 
 export const BoardContainer = styled.div`
   margin-right: 100px;
@@ -376,16 +372,18 @@ export const DetailedPostContainer = styled(SmallContainer)`
   width: 600px;
   height: 800px;
   padding: 20px;
-  margin-top:50px;
+  margin-top: 50px;
 `;
 export function DetailedPostPublisher({ nickname, time, category }) {
   return (
     <>
-      <div style={{ marginRight: '180px' }}>
+      <div style={{ marginRight: "180px" }}>
         <PublisherNickName>{nickname}</PublisherNickName>
         <FlexBox>
           <PublisherTimeNCategory>{category}</PublisherTimeNCategory>
-          <PublisherTimeNCategory style={{ marginLeft: "10px" }}>{time}</PublisherTimeNCategory>
+          <PublisherTimeNCategory style={{ marginLeft: "10px" }}>
+            {time}
+          </PublisherTimeNCategory>
         </FlexBox>
       </div>
     </>
@@ -459,9 +457,9 @@ export const DetailedPostContents = styled.div`
 export const DetailedPostInput = styled.input`
   width: 400px;
   height: 50px;
-  border-radius:10px;
+  border-radius: 10px;
   margin-right: 10px;
-  font-size:20px;
+  font-size: 20px;
 `;
 
 export const DetailedPostSendButton = styled.button`
@@ -473,9 +471,9 @@ export const DetailedPostSendButton = styled.button`
   font-weight: bold;
   border: 0;
   border-radius: 10px;
-  &:hover{
-    cursor:pointer;
-    opacity:0.9;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
   }
 `;
 
@@ -483,75 +481,74 @@ export const DetailedPostAttendButton = styled(DetailedPostSendButton)``;
 
 export const DetailedPostHorizon = styled.hr`
   margin: 10px 0px;
-  border: 1px solid #7BB144;
+  border: 1px solid #7bb144;
 `;
 
 export const DetailedPostCommentContainer = styled.div`
   margin: 30px 0px;
   height: 420px;
-  overflow: auto;
+  overflow-y: scroll;
 `;
 
 // Writing //
 export const WritingContainer = styled(DetailedPostContainer)`
   height: 600px;
-  margin-top:50px;
+  margin-top: 50px;
 `;
 
 export const WritingTitleInput = styled.input`
-  width:400px;
-  height:50px;
-  font-size:20px;
-  font-weight:bold;
+  width: 400px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
   border: 1px solid gray;
-  border-radius:5px;
+  border-radius: 5px;
 `;
 
 export const WritingTextArea = styled.textarea`
-width:550px;
-height:400px;
-font-size:20px;
-margin: 5px 0px 20px 0px;
+  width: 550px;
+  height: 400px;
+  font-size: 20px;
+  margin: 5px 0px 20px 0px;
 `;
 
-export const WritingCategory = styled.input`
-`;
+export const WritingCategory = styled.input``;
 
 export const WritingSubmitBtton = styled(DetailedPostAttendButton)`
-  width:150px;
+  width: 150px;
   height: 50px;
-  margin-left:200px;
+  margin-left: 200px;
 `;
 
 export const ModifyMyInfoContainer = styled(SmallContainer)`
-  width:450px;
-  height:350px;
-  padding:20px;
-  margin-top:120px;
+  width: 450px;
+  height: 350px;
+  padding: 20px;
+  margin-top: 120px;
 `;
 
 export const ModifyMyInfoLabel = styled(StyledLabel)`
-  font-size:15px;
-`
+  font-size: 15px;
+`;
 
 export const ModifyMyInfoInput = styled(StyledInput)`
-  width:100%;
-  height:20px;
-  font-size:15px;
-`
+  width: 100%;
+  height: 20px;
+  font-size: 15px;
+`;
 
 export const ModifySelfIntroContainer = styled(ModifyMyInfoContainer)`
-  width:450px;
-  height:350px;
-  padding:20px;
+  width: 450px;
+  height: 350px;
+  padding: 20px;
 `;
 
 export const ModifySelfIntroLabel = styled(StyledLabel)`
-font-size:15px;
+  font-size: 15px;
 `;
 
 export const ModifySelfIntroInput = styled(StyledInput)`
-width:100%;
-height: 20px;
-font-size:15px;
+  width: 100%;
+  height: 20px;
+  font-size: 15px;
 `;
