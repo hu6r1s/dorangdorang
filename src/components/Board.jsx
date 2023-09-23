@@ -62,7 +62,7 @@ const Board = ({ type }) => {
         setBenefits(sortedBenefit);
 
         const userIds = sortedDoranDoran.map((doran) => doran.userId);
-
+        console.log(userIds, "userId");
         const userResponses = await Promise.all(
           userIds.map((userId) =>
             axios.get(`${process.env.REACT_APP_SERVER_API}/user/findUserById`, {
@@ -259,9 +259,15 @@ const Board = ({ type }) => {
                 benefitsItems.map((benefit) => (
                   <tr key={benefit.id}>
                     <TableCell>{benefit.id + 1}</TableCell>
-                    <TableCell>{benefit.title}</TableCell>
-                    <TableCell>{benefit.name}</TableCell>
-                    <TableCell>{getRelativeTime(benefit.created)} 전</TableCell>
+                    <StyledTableCell
+                      onClick={() => {
+                        if (userId) navigate(`/benefits/${benefit.id}`);
+                      }}
+                    >
+                      {benefit.title}
+                    </StyledTableCell>
+                    <TableCell>관리자</TableCell>
+                    <TableCell>{getRelativeTime(benefit.created)}</TableCell>
                   </tr>
                 ))}
             </tbody>

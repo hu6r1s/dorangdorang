@@ -1,4 +1,9 @@
-import { GoogleMap, InfoWindowF, MarkerF, useJsApiLoader } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  InfoWindowF,
+  MarkerF,
+  useJsApiLoader,
+} from "@react-google-maps/api";
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 
@@ -8,8 +13,8 @@ const containerStyle = {
 };
 
 const center = {
-  lat: 36.769652,
-  lng: 126.932406
+  lat: 36.334088,
+  lng: 127.684647,
 };
 
 const myStyles = [
@@ -50,17 +55,20 @@ function Maps() {
       try {
         const response = await axios.get(
           `${process.env.REACT_APP_SERVER_API}/farm/findAllFarms`
-        )
-        console.log(response.data)
+        );
+        console.log(response.data);
         const farmData = response.data;
 
         const geocodingPromises = farmData.map(async (farm) => {
           try {
             const geocodingResponse = await axios.get(
-              `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(farm.address)}&key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}`
+              `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+                farm.address
+              )}&key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}`
             );
 
-            const location = geocodingResponse.data.results[0].geometry.location;
+            const location =
+              geocodingResponse.data.results[0].geometry.location;
 
             return {
               ...farm,
@@ -104,7 +112,7 @@ function Maps() {
           onLoad={onLoad}
           position={{ lat: farm.latitude, lng: farm.longitude }}
           onClick={() => {
-            console.log("1", farms)
+            console.log("1", farms);
             setSelectedMarker(farm);
           }}
         />
@@ -112,10 +120,13 @@ function Maps() {
 
       {selectedMarker && (
         <InfoWindowF
-          position={{ lat: selectedMarker.latitude, lng: selectedMarker.longitude }}
+          position={{
+            lat: selectedMarker.latitude,
+            lng: selectedMarker.longitude,
+          }}
           options={{ pixelOffset: new window.google.maps.Size(0, -25) }}
           onCloseClick={() => {
-            console.log("2", selectedMarker)
+            console.log("2", selectedMarker);
             setSelectedMarker(null);
           }}
         >
@@ -127,7 +138,7 @@ function Maps() {
           </div>
         </InfoWindowF>
       )}
-    </GoogleMap >
+    </GoogleMap>
   ) : (
     <></>
   );

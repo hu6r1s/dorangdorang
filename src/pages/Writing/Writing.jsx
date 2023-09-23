@@ -49,7 +49,7 @@ const Writing = () => {
           })
           .then((response) => {
             console.log(response);
-            navigate("/")
+            navigate("/");
           });
       } else {
         if (userId) {
@@ -109,7 +109,7 @@ const Writing = () => {
                 >
                   <MenuItem value="saecham">새참 먹자</MenuItem>
                   <MenuItem value="poom">품앗이</MenuItem>
-                  <MenuItem value="gomin">고민 토론</MenuItem>
+                  <MenuItem value="gomin">도란 도란</MenuItem>
                 </Select>
               </FormControl>
             </Box>
