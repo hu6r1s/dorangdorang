@@ -1,16 +1,17 @@
 // index.js
-import React from 'react';
+import { GlobalStyle } from "assets/fonts/fonts";
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { RecoilRoot } from "recoil";
 import App from './App';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-      <App />
-  </React.StrictMode>
+  <RecoilRoot>
+    <GlobalStyle />
+    <App />
+  </RecoilRoot>
 );
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

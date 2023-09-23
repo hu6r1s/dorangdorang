@@ -1,13 +1,129 @@
-import React, { useRef, useState } from "react";
+import Grid from "@mui/material/Grid";
+import axios from "axios";
+import { useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom"; // React Router v6에서는 useNavigate를 사용합니다.
+import Header from '../../components/Header';
 import {
   FormContainer,
   StyledButton,
-  StyledLabel,
   StyledInput,
-} from "../SignIn/SignIn";
-import Grid from "@mui/material/Grid";
+  StyledLabel,
+} from "../../styles/Main";
+
 
 const NextSignUp = () => {
+  const navigate = useNavigate(); // useNavigate 훅을 사용하여 페이지 이동 함수를 가져옵니다.
+  const location = useLocation();
+  console.log(location)
+
+  // 폼 데이터 스테이트
+  const [formData, setFormData] = useState({
+    farm_species: "",
+    user_hobit: "",
+    farm_want: "",
+    farm_why: "",
+    user_profileImage: "null",
+    farm_name: '',
+    farm_address: '',
+  });
+
+  // 인풋 데이터 감지
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    console.log(formData)
+  };
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("제출된 데이터:", formData);
+    navigate("/"); // 이동할 경로를 지정합니다.
+  };
+
+  const fileList = []; // 업로드한 파일들을 저장하는 배열
+
+  const onSaveFiles = (e) => {
+      const uploadFiles = Array.prototype.slice.call(e.target.files); // 파일선택창에서 선택한 파일들
+
+      uploadFiles.forEach((uploadFile) => {
+          fileList.push(uploadFile);
+      });
+  };
+
+  const onFileUpload = () => {
+      const formData = new FormData();
+
+      fileList.forEach((file) => {
+          // 파일 데이터 저장
+          formData.append('multipartFiles', file);
+      });
+
+      // 객체
+      const foodDto = {
+          name: '피자',
+          price: 13500,
+      };
+
+      formData.append('stringFoodDto', JSON.stringify(foodDto)); // 직렬화하여 객체 저장
+
+      axios.post('http://localhost:8080/uploadFiles', formData);
+  };
+
+
+
+  const register = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_API}/farm/create`,
+        null,
+        {
+          params: {
+            name: formData.farm_name,
+            species: formData.farm_species,
+            want: formData.farm_want,
+            hobit: formData.user_hobit,
+            why: formData.farm_why,
+            address: formData.farm_address,
+            userId: location.state.userId,
+          }
+        }
+      );
+      console.log(response);
+      navigate("/SignIn");
+      
+
+      const imageFormData = new FormData();
+      imageFormData.append("file", formData.user_profileImage);
+      const SendImage = await axios.post(
+        `${process.env.REACT_APP_SERVER_API}/content/create`,
+        JSON.stringify({
+          "multipartFiles": [
+            `${formData.user_profileImage.name}`
+          ]
+        }),
+        {
+          params: {
+            userId: location.state.userId,
+            targetId: response.data,
+            category : 3,
+          }
+        }
+      );
+      console.log("이미지 업로드 테스트 ///////")
+      console.log(SendImage);
+
+      
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const fileInputRef = useRef(null); // 파일 입력란의 ref 생성
   const [selectedFileName, setSelectedFileName] = useState("파일을 선택하세요");
 
@@ -16,81 +132,177 @@ const NextSignUp = () => {
     const fileName =
       fileInputRef.current?.files[0]?.name || "파일을 선택하세요";
     setSelectedFileName(fileName);
+    setFormData({
+      ...formData,
+      user_profileImage: fileInputRef.current?.files[0],
+    });
+    console.log(formData);
   };
+
+  // 렌더링
   return (
-    <div style={{ padding: "50px" }}>
-      <FormContainer
-        style={{ margin: "0 auto", width: "1000px", height: "1000px" }}
-      >
-        <Grid
-          container
-          rowSpacing={3}
-          justifyContent="center"
-          style={{ margin: "50px", marginTop:'100px'}}
+    <>
+      <Header />
+      <FormContainer style={{ padding: '25px 0', height: '400px' }}>
+        <form
+          // onSubmit={handleSubmit}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          {/* 재배종목 */}
-          <Grid item xs={4} style={{paddingRight:'15px'}}>
-            <div>
-              <StyledLabel>재배종목</StyledLabel>
-              <br />
-              <StyledInput width={"100%"} height={"50px"} fontSize={"25px"} />
-            </div>
+          <Grid
+            container
+            rowSpacing={1.5}
+            justifyContent="center"
+            style={{ width: '300px' }}
+          >
+            {/* 재배종목 */}
+            <Grid item xs={6} style={{ paddingRight: "15px" }}>
+              <div>
+                <StyledLabel style={{ fontSize: '15px' }}>재배종목</StyledLabel>
+                <br />
+                <StyledInput
+                  width={"100%"}
+                  height={"20px"}
+                  fontSize={"15px"}
+                  name="farm_species"
+                  value={formData.farm_species}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </Grid>
+            {/* 취미 */}
+            <Grid item xs={6} style={{ paddingLeft: "15px" }}>
+              <div>
+                <StyledLabel style={{ fontSize: '15px' }}>취미</StyledLabel>
+                <br />
+                <StyledInput
+                  width={"100%"}
+                  height={"20px"}
+                  fontSize={"15px"}
+                  name="user_hobit"
+                  value={formData.user_hobit}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </Grid>
+            {/* 이런 사람들과 친해지고 싶어요 */}
+            <Grid item xs={12}>
+              <div>
+                <StyledLabel style={{ fontSize: '15px' }}>이런 사람들과 친해지고 싶어요</StyledLabel>
+                <br />
+                <StyledInput
+                  width={"100%"}
+                  height={"20px"}
+                  fontSize={"15px"}
+                  name="farm_want"
+                  value={formData.farm_want}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </Grid>
+            {/* 귀농한 이유 */}
+            <Grid item xs={12}>
+              <div>
+                <StyledLabel style={{ fontSize: '15px' }}>귀농한 이유</StyledLabel>
+                <br />
+                <StyledInput
+                  width={"100%"}
+                  height={"20px"}
+                  fontSize={"15px"}
+                  name="farm_why"
+                  value={formData.farm_why}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </Grid>
+            {/* 농장 이름 */}
+            <Grid item xs={6} style={{ paddingRight: "15px" }}>
+              <div>
+                <StyledLabel style={{ fontSize: '15px' }}>농장 이름</StyledLabel>
+                <br />
+                <StyledInput
+                  width={"100%"}
+                  height={"20px"}
+                  fontSize={"15px"}
+                  name="farm_name"
+                  value={formData.farm_name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </Grid>
+            {/* 농장 주소 */}
+            <Grid item xs={6} style={{ paddingLeft: "15px" }}>
+              <div>
+                <StyledLabel style={{ fontSize: '15px' }}>농장 주소</StyledLabel>
+                <br />
+                <StyledInput
+                  width={"100%"}
+                  height={"20px"}
+                  fontSize={"15px"}
+                  name="farm_address"
+                  value={formData.farm_address}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </Grid>
           </Grid>
-          {/* 취미 */}
-          <Grid item xs={4} style={{paddingLeft:'15px'}}>
+          {/* 농장 사진 */}
+          <div style={{ marginBottom: "20px", marginRight: '80px' }}>
+            <StyledLabel style={{ fontSize: '15px' }}>농장 사진</StyledLabel>
             <div>
-              <StyledLabel>취미</StyledLabel>
-              <br />
-              <StyledInput width={"100%"} height={"50px"} fontSize={"25px"} />
+              <input
+                type="file"
+                id="fileInput"
+                name="user_profile"
+                ref={fileInputRef} // ref 연결
+                onChange={onSaveFiles}
+                style={{ display: "none" }}
+                multiple
+              />
+              <StyledButton
+                onClick={onFileUpload} // ref를 사용하여 파일 입력란 클릭
+                style={{
+                  width: "80px",
+                  height: "40px",
+                  fontSize: "15px",
+                  margin: '5px 10px 0px 0px'
+                }}
+              >
+                업로드
+              </StyledButton>
+              <span
+                style={{
+                  fontSize: "15px",
+                  fontWeight: "bold",
+                  color: "#A4651B",
+                }}
+              >
+                {selectedFileName}
+              </span>
             </div>
-          </Grid>
-          {/* 이런 사람들과 친해지고 싶어요 */}
-          <Grid item xs={8}>
-            <div>
-              <StyledLabel>이런 사람들과 친해지고 싶어요</StyledLabel>
-              <br />
-              <StyledInput width={"100%"} height={"50px"} fontSize={"25px"} />
-            </div>
-          </Grid>
-          {/* 귀농한 이유 */}
-          <Grid item xs={8}>
-            <div>
-              <StyledLabel>귀농한 이유</StyledLabel>
-              <br />
-              <StyledInput width={"100%"} height={"50px"} fontSize={"25px"} />
-            </div>
-          </Grid>
-        </Grid>
-        {/* 프로필 사진 */}
-        <div style={{ marginBottom: "150px", paddingRight: "280px" }}>
-          <StyledLabel>농장 사진</StyledLabel>
-          <div>
-          <input
-            type="file"
-            id="fileInput"
-            ref={fileInputRef} // ref 연결
-            onChange={handleFileInputChange}
-            style={{ display: "none" }}
-            />
-          <StyledButton
-            onClick={() => fileInputRef.current.click()} // ref를 사용하여 파일 입력란 클릭
-            style={{width:'200px', height:'80px', fontSize:'30px', marginLeft:'0px'}}
-            > 
-            업로드
-          </StyledButton>
-          <span style={{fontSize:'20px', fontWeight:'bold',color:'#A4651B'}}>{selectedFileName}</span>
           </div>
-        </div>
-        {/* 회원가입 버튼 */}
-        <StyledButton
-          style={{width: "680px" }}
-          backgroundColor="#A4651B"
-          border="3px solid #dd923d"
-        >
-          회원가입
-        </StyledButton>
+          {/* 회원가입 버튼 */}
+          <StyledButton
+            type="submit"
+            style={{ width: "350px", fontSize: '25px' }}
+            backgroundColor="#A4651B"
+            border="3px solid #dd923d"
+            onClick={register}
+          >
+            회원가입
+          </StyledButton>
+        </form>
       </FormContainer>
-    </div>
+    </>
   );
 };
 export default NextSignUp;
