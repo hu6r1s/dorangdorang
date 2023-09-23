@@ -9,8 +9,31 @@ import {
   BenefitsBoardSubtitle,
   BenefitsBoardTitle,
 } from "styles/Main";
+import { useState, useEffect } from "react";
+import { axios } from "axios";
+import { useParams } from "react-router-dom";
 
 const BenefitsBoard = () => {
+  const [boardData, setBoardData] = useState({});
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const boardResponse = await axios.get(
+        `${process.env.REACT_APP_SERVER_API}/event/findEventByEventId`,
+        {
+          params: {
+            id: parseInt(id),
+          },
+        }
+      );
+      setBoardData(boardResponse.data);
+      console.log(boardResponse);
+    };
+
+    fetchData();
+  }, [id]);
+
   return (
     <>
       <Header />
